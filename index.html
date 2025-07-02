@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Chef Goiano - Sabores Autênticos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">🍽️</div>
+            </div>
+            <div class="header-title">
+                <h1>MASTER CHEF GOIANO</h1>
+                <p class="delivery-info">ENTREGA: <span id="delivery-status">GRÁTIS</span></p>
+            </div>
+            <div class="header-actions">
+                <button class="share-btn" onclick="shareRestaurant()">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="admin-btn" onclick="openAdmin()">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner/Carousel -->
+    <section class="banner-section">
+        <div class="banner-container">
+            <div class="banner-slide active" id="dish-of-the-day">
+                <img src="" alt="Prato do Dia">
+                <div class="banner-content">
+                    <h3>Prato do Dia</h3>
+                    <button class="order-btn" onclick="orderDishOfTheDay()">Prato do DIA!</button>
+                </div>
+            </div>
+            <div class="banner-slide" id="delivery-info">
+                <img src="https://i.ibb.co/CpBf1RLY/Prompt-and-reliable-delivery-service-Your-schedule-our-priority-1.png" alt="Informações de Entrega">
+                <div class="banner-content">
+                    <h3 id="delivery-type">Frete Grátis</h3>
+                    <p id="working-hours">Seg a Dom: 09:00 às 16:00</p>
+                </div>
+            </div>
+            <div class="banner-controls">
+                <button class="banner-control prev" onclick="prevSlide()">❮</button>
+                <button class="banner-control next" onclick="nextSlide()">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="category-section">
+        <div class="category-filter-container">
+            <div class="category-filter">
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-utensils"></i>
+                    Todos
+                </button>
+                <button class="category-btn" data-category="grelhados">
+                    <i class="fas fa-fire"></i>
+                    Grelhados
+                </button>
+                <button class="category-btn" data-category="mistas">
+                    <i class="fas fa-drumstick-bite"></i>
+                    Mistas
+                </button>
+                <button class="category-btn" data-category="bife">
+                    <i class="fas fa-bacon"></i>
+                    Bife Master
+                </button>
+                <button class="category-btn" data-category="adicionais">
+                    <i class="fas fa-plus-circle"></i>
+                    Adicionais
+                </button>
+                <button class="category-btn" data-category="bebidas">
+                    <i class="fas fa-glass-whiskey"></i>
+                    Bebidas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <main class="products-container" id="products-container">
+        <!-- Products will be dynamically loaded here -->
+    </main>
+
+    <!-- Botão Carrinho Flutuante -->
+    <div class="cart-btn-float" onclick="openCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <!-- Botão Instagram Flutuante -->
+    <div class="instagram-btn" onclick="openInstagram()">
+        <i class="fab fa-instagram"></i>
+    </div>
+
+    <!-- Botão WhatsApp Suporte Flutuante -->
+    <div class="whatsapp-support-btn" onclick="openWhatsAppSupport()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- Cart Modal (vazio - será preenchido pelo JS) -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-bag"></i> Seu Pedido</h2>
+                <button class="close-btn" onclick="closeCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="modal-footer" id="cart-footer">
+                <!-- Cart total and checkout button -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal (vazio - será preenchido pelo JS) -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="back-btn" onclick="backToCart()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 id="checkout-title">Forma de Recebimento</h2>
+                <button class="close-btn" onclick="closeCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="checkout-content">
+                <!-- Checkout steps will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal (vazio - será preenchido pelo JS) -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header admin-header">
+                <h2><i class="fas fa-cog"></i> Painel Administrativo</h2>
+                <button class="close-btn" onclick="closeAdmin()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="admin-content">
+                <!-- Admin content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>🍽️ Master Chef Goiano 🍽️</h2>
+            <p>Sabores autênticos da culinária goiana</p>
+            <p class="footer-info">Pagamento na entrega</p>
+            <p>Desenvolvido pela <a href="https://personbr.netlify.app/" target="_blank">@Personbr</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
