@@ -490,6 +490,49 @@ button {
   font-size: 1.25rem;
 }
 
+/* Indicadores visuais para o chat */
+.chat-btn-float.error {
+    background: linear-gradient(45deg, #ef4444, #dc2626) !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+.chat-btn-float.error::after {
+    content: '!';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-btn-float.whatsapp-fallback {
+    background: linear-gradient(45deg, #25D366, #128C7E) !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Pulse animation para feedback */
+.chat-btn-float.pulse {
+    animation: pulse-chat 1s ease;
+}
+
+@keyframes pulse-chat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
 .cart-btn-float.pulse {
   animation: pulse 1s ease;
 }

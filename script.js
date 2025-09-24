@@ -250,27 +250,26 @@ function reloadTawkToIfNeeded() {
 
 // Initialize App
 function initApp() {
-    // Verificar se o Tawk.to carregou
-    checkTawkToStatus();
+    console.log('🚀 Iniciando aplicação...');
     
+    // Carrega dados
     products = loadFromStorage('master_chef_products', initialProducts);
     deliverySettings = loadFromStorage('master_chef_delivery', { enabled: false, price: 5.00 });
     dishOfTheDay = loadFromStorage('master_chef_dish_of_the_day', products.find(p => p.special) || products[0]);
     
+    // Inicializa UI
     updateDeliveryStatus();
     renderBanner();
     renderProducts();
     setupEventListeners();
     startBannerRotation();
-    
     updateCartDisplay();
     
-    // Verifica novamente após 5 segundos se não carregou
-    setTimeout(function() {
-        if (!tawkToLoaded) {
-            reloadTawkToIfNeeded();
-        }
-    }, 5000);
+    // Verifica Tawk.to após um delay
+    setTimeout(() => {
+        console.log('🔍 Verificando Tawk.to...');
+        checkTawkToStatus();
+    }, 2000);
 }
 
 // Banner Functions
@@ -362,53 +361,97 @@ function updateDeliveryStatus() {
     }
 }
 
-// Função para abrir o chat Tawk.to
 function openChat() {
-    console.log('Abrindo chat...');
+    console.log('🔧 Tentando abrir chat...');
     
-    if (typeof Tawk_API !== 'undefined') {
-        try {
-            // Remove classe de erro se existir
+    // Verifica se o Tawk.to está disponível
+    if (typeof Tawk_API !== 'undefined' && Tawk_API) {
+        console.log('✅ Tawk.to disponível');
+        
+        // Tenta maximizar o chat
+        if (typeof Tawk_API.maximize === 'function') {
+            Tawk_API.maximize();
+            console.log('📱 Chat aberto com sucesso');
+            
+            // Feedback visual
+            const chatBtn = document.querySelector('.chat-btn-float');
+            if (chatBtn) {
+                chatBtn.classList.add('pulse');
+                setTimeout(() => chatBtn.classList.remove('pulse'), 1000);
+            }
+            return;
+        }
+    }
+    
+    // Fallback para WhatsApp apenas se o Tawk.to realmente não funcionar
+    console.log('❌ Tawk.to não disponível, usando WhatsApp');
+    fallbackToWhatsApp();
+}
+
+// Função de fallback melhorada
+function fallbackToWhatsApp() {
+    const message = 'Olá! Gostaria de informações sobre os pratos do Master Chef Goiano';
+    const whatsappUrl = `https://wa.me/5561992069975?text=${encodeURIComponent(message)}`;
+    
+    // Feedback visual
+    const chatBtn = document.querySelector('.chat-btn-float');
+    if (chatBtn) {
+        chatBtn.classList.add('whatsapp-fallback');
+        setTimeout(() => chatBtn.classList.remove('whatsapp-fallback'), 2000);
+    }
+    
+    window.open(whatsappUrl, '_blank');
+}
+// Função melhorada para verificar status do Tawk.to
+function checkTawkToStatus() {
+    const maxAttempts = 20;
+    let attempts = 0;
+    
+    const checkInterval = setInterval(() => {
+        attempts++;
+        
+        // Verifica se o Tawk.to está carregado
+        if (typeof Tawk_API !== 'undefined' && Tawk_API) {
+            tawkToLoaded = true;
+            console.log('✅ Tawk.to carregado com sucesso após ' + attempts + 's');
+            clearInterval(checkInterval);
+            
+            // Remove indicador de erro
             const chatBtn = document.querySelector('.chat-btn-float');
             if (chatBtn) {
                 chatBtn.classList.remove('error');
+                chatBtn.title = 'Fale conosco';
             }
-            
-            // Verifica se o chat está minimizado e maximiza
-            if (Tawk_API.isChatMinimized && Tawk_API.isChatMinimized()) {
-                Tawk_API.maximize();
-                console.log('Chat maximizado com sucesso');
-            } else if (Tawk_API.isChatHidden && Tawk_API.isChatHidden()) {
-                Tawk_API.toggle();
-                console.log('Chat mostrado com sucesso');
-            } else {
-                Tawk_API.maximize();
-                console.log('Chat aberto com sucesso');
-            }
-            
-            // Mensagem automática de boas-vindas após 2 segundos
-            setTimeout(() => {
-                if (typeof Tawk_API !== 'undefined' && Tawk_API.setAttributes) {
-                    Tawk_API.setAttributes({
-                        name: 'Cliente Master Chef Goiano',
-                        email: 'cliente@masterchefgoiano.com.br',
-                        store: 'Master Chef Goiano'
-                    }, function(error){
-                        if (!error) {
-                            console.log('Atributos do chat configurados');
-                        }
-                    });
-                }
-            }, 2000);
-            
-        } catch (error) {
-            console.error('Erro ao abrir chat Tawk.to:', error);
-            fallbackToWhatsApp();
         }
-    } else {
-        console.warn('Tawk.to não disponível, usando fallback para WhatsApp');
-        fallbackToWhatsApp();
+        
+        if (attempts >= maxAttempts) {
+            console.warn('❌ Tawk.to não carregado após ' + maxAttempts + 's');
+            clearInterval(checkInterval);
+            
+            // Adiciona indicador visual de erro
+            const chatBtn = document.querySelector('.chat-btn-float');
+            if (chatBtn) {
+                chatBtn.classList.add('error');
+                chatBtn.title = 'Chat indisponível. Clique para WhatsApp.';
+            }
+        }
+    }, 1000);
+}
+
+// Função de fallback melhorada
+function fallbackToWhatsApp() {
+    console.log('📞 Redirecionando para WhatsApp...');
+    const message = 'Olá! Gostaria de informações sobre os pratos do Master Chef Goiano';
+    const whatsappUrl = `https://wa.me/5561992069975?text=${encodeURIComponent(message)}`;
+    
+    // Feedback visual
+    const chatBtn = document.querySelector('.chat-btn-float');
+    if (chatBtn) {
+        chatBtn.classList.add('whatsapp-fallback');
+        setTimeout(() => chatBtn.classList.remove('whatsapp-fallback'), 2000);
     }
+    
+    window.open(whatsappUrl, '_blank');
 }
 
 // Fallback para WhatsApp
