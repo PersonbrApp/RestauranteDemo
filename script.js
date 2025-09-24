@@ -1,1 +1,1504 @@
-const _0x9b6286=_0x1708;(function(_0x507f1e,_0x27e35d){const _0x31467=_0x1708,_0x582c32=_0x507f1e();while(!![]){try{const _0x4fdde5=-parseInt(_0x31467(0x1c3))/0x1*(-parseInt(_0x31467(0x234))/0x2)+parseInt(_0x31467(0x1a1))/0x3*(parseInt(_0x31467(0x25e))/0x4)+-parseInt(_0x31467(0x205))/0x5+-parseInt(_0x31467(0x224))/0x6*(-parseInt(_0x31467(0x233))/0x7)+-parseInt(_0x31467(0x22f))/0x8*(parseInt(_0x31467(0x1be))/0x9)+parseInt(_0x31467(0x143))/0xa+-parseInt(_0x31467(0x21d))/0xb;if(_0x4fdde5===_0x27e35d)break;else _0x582c32['push'](_0x582c32['shift']());}catch(_0x4a7ced){_0x582c32['push'](_0x582c32['shift']());}}}(_0x11eb,0x621c9));let products=[],cart=[],currentUser=null,checkoutStep=_0x9b6286(0x159),deliveryInfo={'type':_0x9b6286(0x159)},customerInfo={'name':'','phone':''},paymentMethod='pix',deliverySettings={'enabled':![],'price':0x5},dishOfTheDay=null,currentSlide=0x0,bannerInterval=null;const productImages={'1':_0x9b6286(0x252),'2':_0x9b6286(0x1dd),'3':'https://manualdohomemmoderno.com.br/files/2020/05/como-fazer-calabresa-acebolada-na-cachaca-petiscos-pra-fazer-em-casa-como-fazer-calabresa-acebolada-na-cachaca-petiscos-pra-fazer-em-casa.jpg?auto=compress&cs=tinysrgb&w=400','4':_0x9b6286(0x144),'5':_0x9b6286(0x1ee),'6':_0x9b6286(0x17d),'7':_0x9b6286(0x184),'8':_0x9b6286(0x177),'9':_0x9b6286(0x265),'10':_0x9b6286(0x1d3),'11':_0x9b6286(0x1c2),'12':'https://ibassets.com.br/ib.item.image.big/b-6f0d3398f1cc4e8b9fc18ee87cfd332e.png?auto=compress&cs=tinysrgb&w=400','13':_0x9b6286(0x1d7),'14':_0x9b6286(0x161)},bannerImages={'dishOfTheDay':_0x9b6286(0x197),'deliveryInfo':'https://images.pexels.com/photos/4393021/pexels-photo-4393021.jpeg'},initialProducts=[{'id':'1','name':_0x9b6286(0x1ed),'description':_0x9b6286(0x16e),'category':'grelhados','price':{'G':17.99},'available':!![],'icon':'🐓','special':!![]},{'id':'2','name':_0x9b6286(0x155),'description':_0x9b6286(0x27b),'category':_0x9b6286(0x173),'price':{'P':14.99,'G':17.99},'available':!![],'icon':'🍗'},{'id':'3','name':_0x9b6286(0x16d),'description':_0x9b6286(0x1ce),'category':_0x9b6286(0x173),'price':{'P':14.99,'G':17.99},'available':!![],'icon':'🥨'},{'id':'4','name':_0x9b6286(0x239),'description':'Duas\x20opções\x20de\x20carne\x20à\x20sua\x20escolha\x20com\x20acompanhamentos\x20tradicionais','category':_0x9b6286(0x20a),'price':{'unique':19.99},'available':!![],'icon':'🍖'},{'id':'5','name':_0x9b6286(0x1fa),'description':'Mista\x20especial\x20incluindo\x20bife\x20como\x20uma\x20das\x20opções\x20de\x20carne','category':_0x9b6286(0x20a),'price':{'unique':24.99},'available':!![],'icon':'🍖'},{'id':'6','name':_0x9b6286(0x1d5),'description':_0x9b6286(0x1a2),'category':_0x9b6286(0x185),'price':{'G':19.99},'available':!![],'icon':'🥩'},{'id':'7','name':_0x9b6286(0x274),'description':'Ovo\x20frito\x20fresquinho','category':_0x9b6286(0x256),'price':{'unique':0x3},'available':!![],'icon':'🍳'},{'id':'8','name':_0x9b6286(0x179),'description':_0x9b6286(0x15f),'category':_0x9b6286(0x256),'price':{'unique':0x3},'available':!![],'icon':'🥚'},{'id':'9','name':_0x9b6286(0x172),'description':_0x9b6286(0x200),'category':'bebidas','price':{'unique':0x6},'available':!![],'icon':'🥤'},{'id':'10','name':_0x9b6286(0x225),'description':_0x9b6286(0x212),'category':_0x9b6286(0x1c9),'price':{'unique':0xf},'available':!![],'icon':'🥤'},{'id':'11','name':_0x9b6286(0x214),'description':'Refrigerante\x20Kuat\x201.5L','category':_0x9b6286(0x1c9),'price':{'unique':0xa},'available':!![],'icon':'🥤'},{'id':'12','name':_0x9b6286(0x209),'description':_0x9b6286(0x1de),'category':_0x9b6286(0x1c9),'price':{'unique':0x4},'available':!![],'icon':'🥤'},{'id':'13','name':_0x9b6286(0x1c7),'description':_0x9b6286(0x1ad),'category':_0x9b6286(0x173),'price':{'unique':42.9},'available':!![],'icon':'🥩'},{'id':'14','name':_0x9b6286(0x1f3),'description':_0x9b6286(0x196),'category':_0x9b6286(0x210),'price':{'unique':19.9},'available':!![],'icon':'🥩'}];function saveToStorage(_0x3070fb,_0x257eeb){const _0x4d227b=_0x9b6286;try{localStorage[_0x4d227b(0x25c)](_0x3070fb,JSON[_0x4d227b(0x22e)](_0x257eeb));}catch(_0xee462e){console[_0x4d227b(0x14f)]('Could\x20not\x20save\x20to\x20localStorage:',_0xee462e);}}function loadFromStorage(_0x47d381,_0x362887=null){const _0x58461d=_0x9b6286;try{const _0x1da4e7=localStorage[_0x58461d(0x1da)](_0x47d381);return _0x1da4e7?JSON['parse'](_0x1da4e7):_0x362887;}catch(_0xd89788){return console[_0x58461d(0x14f)]('Could\x20not\x20load\x20from\x20localStorage:',_0xd89788),_0x362887;}}function initApp(){const _0x2b819b=_0x9b6286;products=loadFromStorage(_0x2b819b(0x20b),initialProducts),deliverySettings=loadFromStorage(_0x2b819b(0x21a),{'enabled':![],'price':0x5}),dishOfTheDay=loadFromStorage('master_chef_dish_of_the_day',products['find'](_0xbbef7e=>_0xbbef7e[_0x2b819b(0x1a6)])||products[0x0]),updateDeliveryStatus(),renderBanner(),renderProducts(),setupEventListeners(),startBannerRotation(),updateCartDisplay();}function renderBanner(){const _0x1dacc5=_0x9b6286,_0x5863b9=document[_0x1dacc5(0x24e)]('dish-of-the-day'),_0x18a073=document[_0x1dacc5(0x24e)](_0x1dacc5(0x1e9));dishOfTheDay&&(_0x5863b9[_0x1dacc5(0x1a5)]('img')[_0x1dacc5(0x181)]=productImages[dishOfTheDay['id']]||bannerImages[_0x1dacc5(0x160)],_0x5863b9[_0x1dacc5(0x1a5)]('h3')['textContent']=dishOfTheDay['name']);const _0x1d18c7=document[_0x1dacc5(0x24e)]('delivery-type'),_0x59743e=document[_0x1dacc5(0x24e)]('working-hours');deliverySettings[_0x1dacc5(0x258)]?_0x1d18c7['textContent']='Frete:\x20'+formatPrice(deliverySettings['price']):_0x1d18c7[_0x1dacc5(0x17e)]=_0x1dacc5(0x19e),_0x59743e[_0x1dacc5(0x17e)]=_0x1dacc5(0x24c);}function startBannerRotation(){clearInterval(bannerInterval),bannerInterval=setInterval(nextSlide,0x1388);}function nextSlide(){const _0x4b783e=_0x9b6286,_0x1cf19f=document['querySelectorAll'](_0x4b783e(0x1a9));_0x1cf19f[currentSlide][_0x4b783e(0x1e0)]['remove'](_0x4b783e(0x242)),currentSlide=(currentSlide+0x1)%_0x1cf19f[_0x4b783e(0x254)],_0x1cf19f[currentSlide][_0x4b783e(0x1e0)]['add'](_0x4b783e(0x242)),startBannerRotation();}function prevSlide(){const _0x3c56c4=_0x9b6286,_0x30a55b=document[_0x3c56c4(0x245)](_0x3c56c4(0x1a9));_0x30a55b[currentSlide][_0x3c56c4(0x1e0)][_0x3c56c4(0x17a)](_0x3c56c4(0x242)),currentSlide=(currentSlide-0x1+_0x30a55b['length'])%_0x30a55b[_0x3c56c4(0x254)],_0x30a55b[currentSlide][_0x3c56c4(0x1e0)][_0x3c56c4(0x25f)](_0x3c56c4(0x242)),startBannerRotation();}function orderDishOfTheDay(){const _0xac8f1=_0x9b6286;if(!dishOfTheDay){console[_0xac8f1(0x26a)]('Nenhum\x20prato\x20do\x20dia\x20definido');return;}if(!dishOfTheDay[_0xac8f1(0x1b3)]){alert(_0xac8f1(0x164));return;}let _0x1a7d22='unique';if(dishOfTheDay['price']['G'])_0x1a7d22='G';else dishOfTheDay[_0xac8f1(0x154)]['P']&&(_0x1a7d22='P');updateQuantity(dishOfTheDay['id'],_0x1a7d22,0x1),openCart();const _0x129780=document[_0xac8f1(0x1a5)]('.cart-btn-float');_0x129780[_0xac8f1(0x1e0)]['add']('pulse'),setTimeout(()=>{const _0xd098a5=_0xac8f1;_0x129780[_0xd098a5(0x1e0)]['remove'](_0xd098a5(0x20d));},0x3e8);}function updateDeliveryStatus(){const _0x30d2b6=_0x9b6286,_0x42bed9=document[_0x30d2b6(0x24e)](_0x30d2b6(0x194));deliverySettings[_0x30d2b6(0x258)]?_0x42bed9[_0x30d2b6(0x17e)]=formatPrice(deliverySettings[_0x30d2b6(0x154)]):_0x42bed9[_0x30d2b6(0x17e)]=_0x30d2b6(0x1dc);}function _0x11eb(){const _0x146a26=['pulse','icon','payment','mista','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.75rem;\x20color:\x20#f59e0b;\x20margin-top:\x200.25rem;\x22>Pagamento\x20presencial\x20no\x20ato\x20da\x20entrega</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22whatsapp-btn\x22\x20onclick=\x22sendWhatsAppOrder()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fab\x20fa-whatsapp\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Enviar\x20Pedido\x20via\x20WhatsApp\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','Refrigerante\x20Coca-Cola\x202L','Cidade:\x20','Kuat\x201.5L','customer','bairro','\x22\x20onchange=\x22updateBannerImage(this.value,\x20\x27','\x20\x20\x20Quantidade:\x20','PIX','master_chef_delivery','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22address-form\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4><i\x20class=\x22fas\x20fa-utensils\x22\x20style=\x22color:\x20#dc2626;\x22></i>\x20Informe\x20o\x20número\x20da\x20mesa</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Número\x20da\x20Mesa\x20*</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22table-number\x22\x20placeholder=\x22Ex:\x2012\x22\x20value=\x22','address','8448253tdgnLs','toLocaleString','\x22\x20onclick=\x22setDeliveryType(\x27table\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option-icon\x20','\x22\x20oninput=\x22handleCustomerInput()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Telefone/WhatsApp\x20*</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22tel\x22\x20id=\x22customer-phone\x22\x20placeholder=\x22(00)\x2000000-0000\x22\x20maxlength=\x2215\x22\x20value=\x22','\x27,\x20\x27G\x27,\x201)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-plus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Confirmação\x20do\x20Pedido','\x22></i>\x20','325758ntZVof','Coca-Cola\x202L','cep-input','*🔔\x20Obrigado\x20pelo\x20seu\x20pedido!\x20🔔*\x0a','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','master_chef_dish_of_the_day','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20plus\x22\x20onclick=\x22updateCartItemQuantity(','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20plus\x22\x20onclick=\x22updateQuantity(\x27','Cartão\x20de\x20Débito','https://wa.me/','stringify','1371312QYZkXk','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22checkout-step\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Quase\x20lá!\x20Precisamos\x20dos\x20seus\x20dados</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Para\x20finalizar\x20o\x20pedido\x20e\x20manter\x20contato</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Nome\x20Completo\x20*</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22customer-name\x22\x20placeholder=\x22Digite\x20seu\x20nome\x20completo\x22\x20value=\x22','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22checkout-step\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-note\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20💰\x20Lembre-se:\x20O\x20pagamento\x20será\x20presencialmente\x20no\x20ato\x20da\x20entrega!\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-options\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-option\x20pix\x20','Entraremos\x20em\x20contato\x20para\x20confirmar.','98wdYPeB','2jDUkVj','number','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quantity-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20minus\x22\x20onclick=\x22updateQuantity(\x27','Seu\x20carrinho\x20está\x20vazio.\x20Adicione\x20itens\x20antes\x20de\x20finalizar\x20o\x20pedido.','reduce','Mista\x20com\x202\x20Opções\x20de\x20Carne','Mesa','\x20-\x20','Marmitex\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','admin-content','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>URL\x20da\x20Imagem\x20(opcional)</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20class=\x22banner-image-url\x22\x20placeholder=\x22URL\x20da\x20imagem\x20personalizada\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20value=\x22','Olá,\x20preciso\x20de\x20ajuda\x20com\x20meu\x20pedido\x20no\x20Master\x20Chef\x20Goiano!','filter','active','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','reference','querySelectorAll','\x27,\x20\x27P\x27,\x201)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-plus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Entrega','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-product\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-product-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-product-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22admin-product-icon\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-card\x20','Subtotal:\x20','cash','Seg\x20a\x20Dom:\x2009:00\x20às\x2016:00','max','getElementById','\x22\x20onclick=\x22toggleDeliveryFee()\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-price-input\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Valor:</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20step=\x220.01\x22\x20min=\x220\x22\x20value=\x22','value','*📆\x20Data:*\x20','https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400','\x22\x20class=\x22admin-product-image\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22image-url\x22>Imagem:\x20','length','Pedido\x20enviado\x20com\x20sucesso!\x20Você\x20será\x20redirecionado\x20para\x20o\x20WhatsApp.','adicionais','Retirada\x20na\x20loja','enabled','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onchange=\x22updateProductPrice(\x27','checkout-title','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-control\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Marmitex\x20G</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20step=\x220.01\x22\x20min=\x220\x22\x20value=\x22','setItem','\x27,\x20\x27P\x27,\x20-1)\x22\x20','97940GbRttT','add','Telefone:\x20','forEach','preventDefault','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','CEP\x20deve\x20ter\x208\x20dígitos','https://ibassets.com.br/ib.item.image.big/b-ecb8910c16184849ae6041075ce826d6.jpeg?auto=compress&cs=tinysrgb&w=400','login-error','display','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onclick=\x22toggleProductAvailability(\x27','BRL','error','CEP\x20não\x20encontrado','state','$1-$2','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22checkout-step\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22margin-bottom:\x201rem;\x20text-align:\x20center;\x22>Como\x20você\x20deseja\x20receber\x20seu\x20pedido?</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-options\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option\x20','replace','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22banner-admin-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4><i\x20class=\x22fas\x20fa-image\x22></i>\x20Configurações\x20do\x20Banner</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Prato\x20do\x20Dia</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20class=\x22banner-product-select\x22\x20onchange=\x22updateDishOfTheDay(this.value)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.875rem;\x20color:\x20#059669;\x22>Retirada\x20na\x20loja</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','findIndex','Ovo\x20Frito','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','cart-footer','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-total\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Subtotal:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','pix','Suculento\x20filé\x20de\x20frango\x20grelhado,\x20servido\x20com\x20arroz\x20branco,\x20feijão\x20de\x20caldo,\x20macarrão\x20e\x20farofa\x20Master','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-total-final\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Total:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22total-value\x22>','product','Nome:\x20','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Telefone:</strong>\x20','table','neighborhood','Referência:\x20','5679280nHYoad','https://canada1.discourse-cdn.com/ifood/original/3X/3/d/3d11e2ae1a0de25f77db0af003c946238eee19ff.jpeg?auto=compress&cs=tinysrgb&w=400','admin','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Payment\x20Info\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-summary\x20summary-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3><i\x20class=\x22fas\x20fa-credit-card\x22></i>\x20Pagamento</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.875rem;\x20color:\x20#7c3aed;\x22>','quantity','json','find','Usuário\x20ou\x20senha\x20incorretos','Dinheiro','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','toUpperCase','cep','warn','debit','credit','\x22\x20onclick=\x22setPaymentMethod(\x27cash\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-money-bill-wave\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Dinheiro</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Na\x20entrega</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-option\x20credit\x20','\x22\x20oninput=\x22handleAddressInput()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Ponto\x20de\x20Referência\x20(opcional)</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22address-reference\x22\x20placeholder=\x22Ex:\x20Próximo\x20ao\x20mercado\x22\x20value=\x22','price','Filé\x20de\x20Frango\x20Grelhado','\x27,\x20\x27unique\x27,\x20-1)\x22\x20','target','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Taxa\x20de\x20entrega:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','delivery','logradouro','Disponível','Dados\x20do\x20Cliente','<span\x20class=\x22special-badge\x22>⭐\x20PRATO\x20DO\x20DIA</span>','street','Ovo\x20cozido\x20perfeito','dishOfTheDay','https://i.ibb.co/JjsV5h7k/Design-sem-nome.png','selected','flex','Este\x20prato\x20não\x20está\x20disponível\x20no\x20momento','master_chef_user','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-store\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Retirar</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Na\x20loja</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option\x20','\x22\x20oninput=\x22handlePhoneInput(this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.75rem;\x20color:\x20#6b7280;\x20margin-top:\x200.25rem;\x22>Será\x20usado\x20para\x20confirmar\x20o\x20pedido</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22continue-btn\x22\x20onclick=\x22proceedToPayment()\x22\x20','</div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-price\x22>','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option\x20','productId','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.875rem;\x20color:\x20#059669;\x22>Mesa:\x20','Calabresa\x20Acebolada','Moela\x20ao\x20molho\x20com\x20ervas\x20finas\x20acompanhada\x20de\x20arroz\x20branco,\x20feijão\x20de\x20caldo,\x20macarrão\x20e\x20farofa\x20Master','addEventListener','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Taxa\x20de\x20entrega</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','products-container','Coca-Cola\x20310ml','grelhados','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22','Forma\x20de\x20Recebimento','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22cart-item-size\x22>','https://www.correiobraziliense.com.br/cbradar/wp-content/uploads/2025/06/ovo-cozido_1749766714644.jpg','all','Ovo\x20Cozido','remove','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onchange=\x22updateDeliveryPrice(this.value)\x22\x20','admin-username','https://www.receitasnestle.com.br/sites/default/files/srh_recipes/7b160765f6a8a918cb01c0582c8fad4e.jpg','textContent','*🍴\x20ITENS\x20DO\x20PEDIDO*\x0a','summary','src','</p>','_blank','https://conteudo.imguol.com.br/6a/2020/01/24/ovo-frito-1579891845647_v2_750x1000.jpg?auto=compress&cs=tinysrgb&w=400','bife','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Seu\x20carrinho\x20está\x20vazio.\x20Adicione\x20itens\x20antes\x20de\x20enviar\x20o\x20pedido.','2-digit','size','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-option\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22price-label\x22>Marmitex\x20P</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22price-value\x22>','cep-btn','open','_O\x20pagamento\x20será\x20realizado\x20no\x20ato\x20da\x20entrega/retirada._\x0a\x0a','https://instagram.com/personbrasil','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-login\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22lock-icon\x22>🔒</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Login\x20Administrativo</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Faça\x20login\x20para\x20gerenciar\x20produtos\x20e\x20preços</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<form\x20class=\x22login-form\x22\x20onsubmit=\x22handleLogin(event)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Usuário</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22admin-username\x22\x20required>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Senha</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22password\x22\x20id=\x22admin-password\x22\x20required>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22submit\x22\x20class=\x22login-btn\x22>Entrar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22login-error\x22\x20class=\x22login-error\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</form>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22test-credentials\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Dados\x20de\x20teste:</strong><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Usuário:\x20admin<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Senha:\x20masterchef123\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Continuar\x20para\x20Dados\x20do\x20Cliente\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','*TOTAL:\x20','store','erro','delivery-status','map','Feijoada\x20Goiana,\x20com\x20farofa\x20especial','https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-product-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>','/json/','.continue-btn','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alt=\x22','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22availability-toggle\x20','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','Frete\x20Grátis','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Order\x20Summary\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22order-summary\x20summary-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3><i\x20class=\x22fas\x20fa-shopping-bag\x22></i>\x20Resumo\x20do\x20Pedido</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','.category-btn','6nPDTAX','Bife\x20acebolado\x20suculento,\x20servido\x20com\x20arroz\x20branco,\x20feijão\x20de\x20caldo,\x20macarrão\x20e\x20farofa\x20Master','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Endereço\x20encontrado:</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22address-found\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','querySelector','special','($1)\x20$2-$3','*💳\x20FORMA\x20DE\x20PAGAMENTO*\x0a','.banner-slide','trim','<div\x20class=\x22price-options\x22>','description','Picanha\x20suína\x20selecionada\x20com\x20acompanhamentos','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-option\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22price-value\x22>','https://wa.me/?text=','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22address-form\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4><i\x20class=\x22fas\x20fa-map-marker-alt\x22\x20style=\x22color:\x20#dc2626;\x22></i>\x20Endereço\x20de\x20Entrega</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>CEP\x20para\x20Entrega\x20*</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cep-input-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22cep-input\x22\x20placeholder=\x2200000-000\x22\x20maxlength=\x229\x22\x20value=\x22','type','Buscar','available','block','category','dataset','\x20\x20\x20Valor:\x20','Não\x20informado','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22remove-item-btn\x22\x20onclick=\x22removeCartItem(','join','Erro\x20ao\x20buscar\x20CEP.\x20Tente\x20novamente.','🍽️\x20*Master\x20Chef\x20Goiano*\x20🍽️\x0a\x0aSabores\x20autênticos\x20da\x20culinária\x20goiana!\x0a\x0aPeça\x20agora:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22continue-btn\x22\x20onclick=\x22proceedToCustomer()\x22\x20','27odoNjE','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22product-description\x22>','*💵\x20RESUMO\x20DO\x20VALOR*\x0a','https://redemix.vteximg.com.br/arquivos/ids/216203-1000-1000/7894900911756.jpg?auto=compress&cs=tinysrgb&w=400','763682lptyhd','click','href','tableNumber','Picanha\x20Premium','address-number','bebidas','splice','.category-btn.active','\x27,\x20\x27G\x27,\x20this.value)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Forma\x20de\x20Pagamento','Calabresa\x20acebolada\x20acompanhada\x20de\x20arroz\x20branco,\x20feijão\x20de\x20caldo,\x20macarrão\x20e\x20farofa\x20Master','\x22\x20oninput=\x22handleAddressInput()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-option\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22price-label\x22>Marmitex\x20G</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22price-value\x22>','localidade','checkout-modal','https://thepetitpizzaria.com.br/parobe/wp-content/uploads/2021/06/Pet-2-Litros-Coca-Cola-PNG.png?auto=compress&cs=tinysrgb&w=400','\x22\x20onclick=\x22setDeliveryType(\x27pickup\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option-icon\x20','Bife\x20Acebolado','</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22admin-product-category\x22>','https://griletto.com.br/wp-content/uploads/2024/06/picanha_premium.png?auto=compress&cs=tinysrgb&w=400','unique','pt-BR','getItem','\x22\x20onclick=\x22setDeliveryType(\x27delivery\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-option-icon\x20','GRÁTIS','https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=400','Refrigerante\x20Guaraná\x20Indaiá\x20269ml\x20gelado','5561992069975','classList','customer-name','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-item-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>','innerHTML','style','cart-modal','admin-password','\x27,\x20\x27G\x27,\x20-1)\x22\x20','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','delivery-info','masterchef123','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-minus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22quantity-display\x22>','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','Sabor\x20da\x20Roça','https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&w=400','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x20-\x20Qtd:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-control\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Preço\x20Único</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20step=\x220.01\x22\x20min=\x220\x22\x20value=\x22','pickup','Feijoada','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','name','\x22\x20class=\x22cart-item-image\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22checkout-btn\x22\x20onclick=\x22openCheckout()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-credit-card\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Finalizar\x20Pedido\x0a\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20','Mista\x20com\x20Bife','?text=','city','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x200.875rem;\x20color:\x20#059669;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','disabled','phone','Refrigerante\x20Coca-Cola\x20310ml\x20gelado','admin-modal','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alt=\x22','\x27,\x20\x27unique\x27,\x201)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-plus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-header-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Gerenciar\x20Produtos</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22logout-btn\x22\x20onclick=\x22handleLogout()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-sign-out-alt\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Sair\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-settings\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4><i\x20class=\x22fas\x20fa-truck\x22></i>\x20Configurações\x20de\x20Entrega</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-toggle\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Cobrar\x20taxa\x20de\x20entrega</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22toggle-switch\x20','2282760DgDcmq','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',',\x20-1)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-minus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22quantity-display\x22>','<p>Ref:\x20','Guaraná\x20269ml','mistas','master_chef_products','master_chef_cart'];_0x11eb=function(){return _0x146a26;};return _0x11eb();}function setupEventListeners(){const _0x364755=_0x9b6286;document[_0x364755(0x245)]('.category-btn')['forEach'](_0x1d89ef=>{const _0x3daadc=_0x364755;_0x1d89ef[_0x3daadc(0x16f)](_0x3daadc(0x1c4),_0x3ac8ed=>{const _0x24ea0e=_0x3daadc;document[_0x24ea0e(0x245)](_0x24ea0e(0x1a0))[_0x24ea0e(0x261)](_0x3417d4=>_0x3417d4[_0x24ea0e(0x1e0)][_0x24ea0e(0x17a)](_0x24ea0e(0x242))),_0x3ac8ed[_0x24ea0e(0x157)][_0x24ea0e(0x1e0)][_0x24ea0e(0x25f)](_0x24ea0e(0x242)),filterProducts(_0x3ac8ed[_0x24ea0e(0x157)][_0x24ea0e(0x1b6)][_0x24ea0e(0x1b5)]);});}),document['querySelectorAll']('.modal')[_0x364755(0x261)](_0x2ae982=>{const _0x2a96f2=_0x364755;_0x2ae982[_0x2a96f2(0x16f)]('click',_0x3f4d64=>{const _0x432840=_0x2a96f2;_0x3f4d64[_0x432840(0x157)]===_0x2ae982&&_0x2ae982[_0x432840(0x1e0)][_0x432840(0x17a)](_0x432840(0x242));});});}function renderProducts(_0x5cc4f6=_0x9b6286(0x178)){const _0x1ee128=_0x9b6286,_0x368bc3=document['getElementById'](_0x1ee128(0x171)),_0x469e50=_0x5cc4f6==='all'?products:products[_0x1ee128(0x241)](_0x9d54d2=>_0x9d54d2[_0x1ee128(0x1b5)]===_0x5cc4f6);if(_0x469e50[_0x1ee128(0x254)]===0x0){_0x368bc3[_0x1ee128(0x1e3)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22empty-products\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Nenhum\x20produto\x20encontrado\x20nesta\x20categoria</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';return;}_0x368bc3[_0x1ee128(0x1e3)]=_0x469e50[_0x1ee128(0x195)](_0x4193ae=>_0x1ee128(0x249)+(_0x4193ae['special']?_0x1ee128(0x1a6):'')+'\x20'+(!_0x4193ae[_0x1ee128(0x1b3)]?'unavailable':'')+_0x1ee128(0x19d)+(productImages[_0x4193ae['id']]||productImages['1'])+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alt=\x22'+_0x4193ae[_0x1ee128(0x1f7)]+'\x22\x20class=\x22product-image\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>'+_0x4193ae['name']+'</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x4193ae['id']===dishOfTheDay?.['id']?_0x1ee128(0x15d):'')+_0x1ee128(0x1c0)+_0x4193ae[_0x1ee128(0x1ac)]+_0x1ee128(0x277)+(_0x4193ae[_0x1ee128(0x1b3)]?renderPriceOptions(_0x4193ae):'<div\x20class=\x22unavailable-label\x22>INDISPONÍVEL</div>')+_0x1ee128(0x263))[_0x1ee128(0x1ba)]('');}function renderPriceOptions(_0x30a166){const _0x15f25a=_0x9b6286;let _0xd1c7b1=_0x15f25a(0x1ab);return _0x30a166['price']['P']&&(_0xd1c7b1+=_0x15f25a(0x18a)+formatPrice(_0x30a166[_0x15f25a(0x154)]['P'])+_0x15f25a(0x236)+_0x30a166['id']+_0x15f25a(0x25d)+(getQuantity(_0x30a166['id'],'P')===0x0?'disabled':'')+_0x15f25a(0x1eb)+getQuantity(_0x30a166['id'],'P')+_0x15f25a(0x22b)+_0x30a166['id']+_0x15f25a(0x246)),_0x30a166['price']['G']&&(_0xd1c7b1+=_0x15f25a(0x1d0)+formatPrice(_0x30a166[_0x15f25a(0x154)]['G'])+_0x15f25a(0x236)+_0x30a166['id']+_0x15f25a(0x1e7)+(getQuantity(_0x30a166['id'],'G')===0x0?'disabled':'')+_0x15f25a(0x1eb)+getQuantity(_0x30a166['id'],'G')+_0x15f25a(0x22b)+_0x30a166['id']+_0x15f25a(0x221)),_0x30a166[_0x15f25a(0x154)]['unique']&&(_0xd1c7b1+=_0x15f25a(0x1ae)+formatPrice(_0x30a166[_0x15f25a(0x154)]['unique'])+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quantity-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20minus\x22\x20onclick=\x22updateQuantity(\x27'+_0x30a166['id']+_0x15f25a(0x156)+(getQuantity(_0x30a166['id'],_0x15f25a(0x1d8))===0x0?_0x15f25a(0x1fe):'')+_0x15f25a(0x1eb)+getQuantity(_0x30a166['id'],_0x15f25a(0x1d8))+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20plus\x22\x20onclick=\x22updateQuantity(\x27'+_0x30a166['id']+_0x15f25a(0x203)),_0xd1c7b1+=_0x15f25a(0x168),_0xd1c7b1;}function filterProducts(_0x22813b){renderProducts(_0x22813b);}function getQuantity(_0x484b1,_0x4bbfdf){const _0x1eee8c=_0x9b6286,_0x5e0938=cart[_0x1eee8c(0x149)](_0x1c397b=>_0x1c397b[_0x1eee8c(0x16b)]===_0x484b1&&_0x1c397b[_0x1eee8c(0x189)]===_0x4bbfdf);return _0x5e0938?_0x5e0938[_0x1eee8c(0x147)]:0x0;}function updateQuantity(_0x4cd150,_0x7c8b5d,_0x1d2126){const _0x4a768b=_0x9b6286,_0x3280e7=products['find'](_0x4f3fef=>_0x4f3fef['id']===_0x4cd150);if(!_0x3280e7)return;const _0x53bad8=cart[_0x4a768b(0x273)](_0x1dfeaf=>_0x1dfeaf[_0x4a768b(0x16b)]===_0x4cd150&&_0x1dfeaf[_0x4a768b(0x189)]===_0x7c8b5d),_0x15b255=_0x53bad8>=0x0?cart[_0x53bad8][_0x4a768b(0x147)]:0x0,_0xf0acb8=Math[_0x4a768b(0x24d)](0x0,_0x15b255+_0x1d2126);if(_0xf0acb8===0x0)_0x53bad8>=0x0&&cart[_0x4a768b(0x1ca)](_0x53bad8,0x1);else{const _0x3281ba=_0x3280e7['price'][_0x7c8b5d];_0x53bad8>=0x0?cart[_0x53bad8][_0x4a768b(0x147)]=_0xf0acb8:cart['push']({'productId':_0x4cd150,'product':_0x3280e7,'size':_0x7c8b5d,'quantity':_0xf0acb8,'price':_0x3281ba});}updateCartDisplay(),renderProducts(getCurrentCategory());}function getCurrentCategory(){const _0x2e6f63=_0x9b6286,_0x5b0e30=document['querySelector'](_0x2e6f63(0x1cb));return _0x5b0e30?_0x5b0e30[_0x2e6f63(0x1b6)][_0x2e6f63(0x1b5)]:_0x2e6f63(0x178);}function updateCartDisplay(){const _0x1d9833=_0x9b6286,_0x30e9a4=cart[_0x1d9833(0x238)]((_0x3067f6,_0x3b33ef)=>_0x3067f6+_0x3b33ef[_0x1d9833(0x147)],0x0),_0x27be01=document[_0x1d9833(0x24e)]('cart-count');_0x27be01[_0x1d9833(0x17e)]=_0x30e9a4,_0x30e9a4===0x0?_0x27be01[_0x1d9833(0x1e4)][_0x1d9833(0x267)]='none':_0x27be01[_0x1d9833(0x1e4)][_0x1d9833(0x267)]=_0x1d9833(0x163);}function calculateTotal(){const _0x5d7651=_0x9b6286,_0x364aeb=cart['reduce']((_0x2f7825,_0x74f5d7)=>_0x2f7825+_0x74f5d7[_0x5d7651(0x154)]*_0x74f5d7[_0x5d7651(0x147)],0x0),_0x59062c=deliveryInfo[_0x5d7651(0x1b1)]===_0x5d7651(0x159)&&deliverySettings['enabled']?deliverySettings[_0x5d7651(0x154)]:0x0;return _0x364aeb+_0x59062c;}function formatPrice(_0x421e7f){const _0xdd9315=_0x9b6286;return _0x421e7f[_0xdd9315(0x21e)](_0xdd9315(0x1d9),{'style':'currency','currency':_0xdd9315(0x269)});}function openCart(){const _0x1f5f37=_0x9b6286;renderCartModal(),document[_0x1f5f37(0x24e)](_0x1f5f37(0x1e5))['classList']['add'](_0x1f5f37(0x242));}function closeCart(){const _0x3233d1=_0x9b6286;document['getElementById'](_0x3233d1(0x1e5))['classList'][_0x3233d1(0x17a)](_0x3233d1(0x242));}function renderCartModal(){const _0x303d60=_0x9b6286,_0x37bad0=document[_0x303d60(0x24e)]('cart-items'),_0x4bfd87=document['getElementById'](_0x303d60(0x276));if(cart[_0x303d60(0x254)]===0x0){_0x37bad0[_0x303d60(0x1e3)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22empty-cart\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-shopping-bag\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Seu\x20carrinho\x20está\x20vazio</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x200.875rem;\x22>Adicione\x20alguns\x20itens\x20deliciosos!</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x4bfd87[_0x303d60(0x1e3)]='';return;}_0x37bad0[_0x303d60(0x1e3)]=cart[_0x303d60(0x195)]((_0x1c2b1d,_0x17eebd)=>_0x303d60(0x1f5)+(productImages[_0x1c2b1d[_0x303d60(0x27d)]['id']]||productImages['1'])+_0x303d60(0x19b)+_0x1c2b1d[_0x303d60(0x27d)][_0x303d60(0x1f7)]+_0x303d60(0x1f8)+_0x1c2b1d[_0x303d60(0x27d)]['name']+_0x303d60(0x176)+(_0x1c2b1d[_0x303d60(0x189)]!=='unique'?_0x303d60(0x23c)+_0x1c2b1d[_0x303d60(0x189)]:'')+_0x303d60(0x1b9)+_0x17eebd+')\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-times\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quantity-controls\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22quantity-btn\x20minus\x22\x20onclick=\x22updateCartItemQuantity('+_0x17eebd+_0x303d60(0x207)+_0x1c2b1d[_0x303d60(0x147)]+_0x303d60(0x22a)+_0x17eebd+',\x201)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-plus\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22cart-item-price\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+formatPrice(_0x1c2b1d[_0x303d60(0x154)]*_0x1c2b1d[_0x303d60(0x147)])+_0x303d60(0x14c))[_0x303d60(0x1ba)]('');const _0x2262e0=calculateTotal(),_0x29d150=cart['reduce']((_0x39dac9,_0x4af016)=>_0x39dac9+_0x4af016[_0x303d60(0x154)]*_0x4af016['quantity'],0x0),_0x40e46a=deliveryInfo[_0x303d60(0x1b1)]===_0x303d60(0x159)&&deliverySettings['enabled']?deliverySettings[_0x303d60(0x154)]:0x0;_0x4bfd87['innerHTML']=_0x303d60(0x279)+formatPrice(_0x29d150)+_0x303d60(0x275)+(_0x40e46a>0x0?_0x303d60(0x158)+formatPrice(_0x40e46a)+_0x303d60(0x278):'')+_0x303d60(0x27c)+formatPrice(_0x2262e0)+_0x303d60(0x1f9);}function removeCartItem(_0xe7ed19){const _0x6d9710=_0x9b6286;cart[_0x6d9710(0x1ca)](_0xe7ed19,0x1),updateCartDisplay(),renderCartModal(),renderProducts(getCurrentCategory());}function updateCartItemQuantity(_0x47268,_0xd66946){const _0x4b95a7=_0x9b6286,_0x443c87=cart[_0x47268],_0x24502c=Math[_0x4b95a7(0x24d)](0x1,_0x443c87['quantity']+_0xd66946);_0x443c87[_0x4b95a7(0x147)]=_0x24502c,updateCartDisplay(),renderCartModal(),renderProducts(getCurrentCategory());}function openCheckout(){const _0x2d45dc=_0x9b6286;if(cart[_0x2d45dc(0x254)]===0x0){alert(_0x2d45dc(0x237));return;}checkoutStep='delivery',renderCheckoutModal(),document['getElementById'](_0x2d45dc(0x1e5))[_0x2d45dc(0x1e0)][_0x2d45dc(0x17a)](_0x2d45dc(0x242)),document[_0x2d45dc(0x24e)](_0x2d45dc(0x1d2))[_0x2d45dc(0x1e0)][_0x2d45dc(0x25f)]('active');}function closeCheckout(){const _0x383d35=_0x9b6286;document['getElementById'](_0x383d35(0x1d2))[_0x383d35(0x1e0)]['remove'](_0x383d35(0x242));}function backToCart(){const _0x5df33f=_0x9b6286;document[_0x5df33f(0x24e)](_0x5df33f(0x1d2))['classList'][_0x5df33f(0x17a)](_0x5df33f(0x242)),document['getElementById'](_0x5df33f(0x1e5))[_0x5df33f(0x1e0)][_0x5df33f(0x25f)](_0x5df33f(0x242));}function renderCheckoutModal(){const _0x25cb69=_0x9b6286,_0x166b6a=document[_0x25cb69(0x24e)](_0x25cb69(0x25a)),_0x13189f=document[_0x25cb69(0x24e)]('checkout-content');switch(checkoutStep){case _0x25cb69(0x159):_0x166b6a['textContent']=_0x25cb69(0x175),_0x13189f['innerHTML']=renderDeliveryStep();break;case'customer':_0x166b6a[_0x25cb69(0x17e)]=_0x25cb69(0x15c),_0x13189f['innerHTML']=renderCustomerStep();break;case _0x25cb69(0x20f):_0x166b6a['textContent']=_0x25cb69(0x1cd),_0x13189f[_0x25cb69(0x1e3)]=renderPaymentStep();break;case _0x25cb69(0x180):_0x166b6a[_0x25cb69(0x17e)]=_0x25cb69(0x222),_0x13189f[_0x25cb69(0x1e3)]=renderSummaryStep();break;}}function renderDeliveryStep(){const _0x16ee29=_0x9b6286;return _0x16ee29(0x26e)+(deliveryInfo['type']===_0x16ee29(0x159)?'active':'')+_0x16ee29(0x1db)+(deliveryInfo[_0x16ee29(0x1b1)]===_0x16ee29(0x159)?_0x16ee29(0x242):'')+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-motorcycle\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Entrega</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>'+(deliverySettings[_0x16ee29(0x258)]?formatPrice(deliverySettings[_0x16ee29(0x154)]):_0x16ee29(0x1dc))+_0x16ee29(0x16a)+(deliveryInfo[_0x16ee29(0x1b1)]==='pickup'?'active':'')+_0x16ee29(0x1d4)+(deliveryInfo['type']===_0x16ee29(0x1f2)?_0x16ee29(0x242):'')+_0x16ee29(0x166)+(deliveryInfo[_0x16ee29(0x1b1)]===_0x16ee29(0x280)?_0x16ee29(0x242):'')+_0x16ee29(0x21f)+(deliveryInfo['type']==='table'?_0x16ee29(0x242):'')+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-utensils\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Mesa</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Pedido\x20na\x20mesa</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(deliveryInfo[_0x16ee29(0x1b1)]===_0x16ee29(0x159)?_0x16ee29(0x1b0)+(deliveryInfo[_0x16ee29(0x14e)]||'')+'\x22\x20oninput=\x22handleCepInput(this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22cep-btn\x22\x20onclick=\x22searchCep()\x22\x20id=\x22cep-btn\x22>Buscar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(deliveryInfo[_0x16ee29(0x21c)]?_0x16ee29(0x1a4)+deliveryInfo[_0x16ee29(0x21c)][_0x16ee29(0x15e)]+',\x20'+deliveryInfo[_0x16ee29(0x21c)][_0x16ee29(0x281)]+_0x16ee29(0x228)+deliveryInfo[_0x16ee29(0x21c)]['city']+_0x16ee29(0x23b)+deliveryInfo[_0x16ee29(0x21c)][_0x16ee29(0x26c)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22form-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Número\x20*</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22address-number\x22\x20placeholder=\x22Ex:\x20123,\x20Apto\x2045\x22\x20value=\x22'+(deliveryInfo['address'][_0x16ee29(0x235)]||'')+_0x16ee29(0x153)+(deliveryInfo['address'][_0x16ee29(0x244)]||'')+_0x16ee29(0x1cf):'')+_0x16ee29(0x1f4):'')+_0x16ee29(0x243)+(deliveryInfo[_0x16ee29(0x1b1)]==='table'?_0x16ee29(0x21b)+(deliveryInfo[_0x16ee29(0x1c6)]||'')+'\x22\x20oninput=\x22handleTableInput(this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':'')+_0x16ee29(0x1bd)+(!canProceedToCustomer()?_0x16ee29(0x1fe):'')+_0x16ee29(0x190);}function renderCustomerStep(){const _0xae8848=_0x9b6286;return _0xae8848(0x230)+customerInfo[_0xae8848(0x1f7)]+_0xae8848(0x220)+customerInfo['phone']+_0xae8848(0x167)+(!canProceedToPayment()?_0xae8848(0x1fe):'')+'>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Continuar\x20para\x20Pagamento\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function renderPaymentStep(){const _0x1ee98d=_0x9b6286;return _0x1ee98d(0x231)+(paymentMethod==='pix'?_0x1ee98d(0x242):'')+'\x22\x20onclick=\x22setPaymentMethod(\x27pix\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-mobile-alt\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>PIX</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Instantâneo\x20e\x20seguro</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-option\x20cash\x20'+(paymentMethod==='cash'?'active':'')+_0x1ee98d(0x152)+(paymentMethod===_0x1ee98d(0x151)?_0x1ee98d(0x242):'')+'\x22\x20onclick=\x22setPaymentMethod(\x27credit\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-credit-card\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Cartão\x20Crédito</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Débito\x20ou\x20crédito</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22payment-option\x20debit\x20'+(paymentMethod===_0x1ee98d(0x150)?_0x1ee98d(0x242):'')+'\x22\x20onclick=\x22setPaymentMethod(\x27debit\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-credit-card\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Cartão\x20Débito</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Cartão\x20na\x20entrega</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22continue-btn\x22\x20onclick=\x22proceedToSummary()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Revisar\x20Pedido\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function renderSummaryStep(){const _0x5c06ca=_0x9b6286,_0x2b46ce=cart[_0x5c06ca(0x238)]((_0x35d378,_0x4fc82d)=>_0x35d378+_0x4fc82d[_0x5c06ca(0x154)]*_0x4fc82d[_0x5c06ca(0x147)],0x0),_0x28cd3a=deliveryInfo[_0x5c06ca(0x1b1)]===_0x5c06ca(0x159)&&deliverySettings[_0x5c06ca(0x258)]?deliverySettings[_0x5c06ca(0x154)]:0x0,_0x1028b9=_0x2b46ce+_0x28cd3a;return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22checkout-step\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Customer\x20Info\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22customer-info\x20summary-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3><i\x20class=\x22fas\x20fa-user\x22></i>\x20Dados\x20do\x20Cliente</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Nome:</strong>\x20'+customerInfo[_0x5c06ca(0x1f7)]+_0x5c06ca(0x27f)+customerInfo[_0x5c06ca(0x1ff)]+_0x5c06ca(0x19f)+cart[_0x5c06ca(0x195)](_0x557d41=>_0x5c06ca(0x1e2)+_0x557d41['product'][_0x5c06ca(0x1f7)]+'</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22summary-item-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x557d41['size']!==_0x5c06ca(0x1d8)?_0x5c06ca(0x23c)+_0x557d41[_0x5c06ca(0x189)]:'')+_0x5c06ca(0x1f0)+_0x557d41[_0x5c06ca(0x147)]+_0x5c06ca(0x169)+formatPrice(_0x557d41[_0x5c06ca(0x154)]*_0x557d41[_0x5c06ca(0x147)])+_0x5c06ca(0x271))[_0x5c06ca(0x1ba)]('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-totals\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Subtotal</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>'+formatPrice(_0x2b46ce)+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x28cd3a>0x0?_0x5c06ca(0x170)+formatPrice(_0x28cd3a)+_0x5c06ca(0x1ef):'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-total-final\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Total</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22total-value\x22>'+formatPrice(_0x1028b9)+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Delivery\x20Info\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22delivery-summary\x20summary-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3><i\x20class=\x22fas\x20fa-'+(deliveryInfo[_0x5c06ca(0x1b1)]==='delivery'?'map-marker-alt':deliveryInfo[_0x5c06ca(0x1b1)]===_0x5c06ca(0x280)?'users':_0x5c06ca(0x192))+_0x5c06ca(0x223)+getDeliveryLabel()+'</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(deliveryInfo['type']===_0x5c06ca(0x159)&&deliveryInfo[_0x5c06ca(0x21c)]?_0x5c06ca(0x1fd)+deliveryInfo['address'][_0x5c06ca(0x15e)]+',\x20'+deliveryInfo[_0x5c06ca(0x21c)][_0x5c06ca(0x235)]+_0x5c06ca(0x1ec)+deliveryInfo[_0x5c06ca(0x21c)][_0x5c06ca(0x281)]+_0x5c06ca(0x1ec)+deliveryInfo[_0x5c06ca(0x21c)][_0x5c06ca(0x1fc)]+'\x20-\x20'+deliveryInfo[_0x5c06ca(0x21c)]['state']+_0x5c06ca(0x1bf)+(deliveryInfo[_0x5c06ca(0x21c)][_0x5c06ca(0x244)]?_0x5c06ca(0x208)+deliveryInfo['address'][_0x5c06ca(0x244)]+_0x5c06ca(0x182):'')+_0x5c06ca(0x23d):deliveryInfo['type']===_0x5c06ca(0x280)?_0x5c06ca(0x16c)+deliveryInfo[_0x5c06ca(0x1c6)]+_0x5c06ca(0x1e8):_0x5c06ca(0x272))+_0x5c06ca(0x146)+getPaymentLabel()+_0x5c06ca(0x211);}function setDeliveryType(_0x79b0a3){const _0x4350dc=_0x9b6286;deliveryInfo['type']=_0x79b0a3,_0x79b0a3!==_0x4350dc(0x159)&&(deliveryInfo[_0x4350dc(0x21c)]=null,deliveryInfo['cep']=null),_0x79b0a3!==_0x4350dc(0x280)&&(deliveryInfo[_0x4350dc(0x1c6)]=null),renderCheckoutModal();}function handleCepInput(_0x3be960){const _0x499c2a=_0x9b6286;let _0x4d2397=_0x3be960['value'][_0x499c2a(0x26f)](/\D/g,'');_0x4d2397[_0x499c2a(0x254)]>0x5&&(_0x4d2397=_0x4d2397['replace'](/(\d{5})(\d{1,3})/,_0x499c2a(0x26d))),_0x3be960[_0x499c2a(0x250)]=_0x4d2397,deliveryInfo[_0x499c2a(0x14e)]=_0x4d2397;}function handleAddressInput(){const _0xfef64b=_0x9b6286,_0x434ae1=document['getElementById'](_0xfef64b(0x1c8))[_0xfef64b(0x250)],_0x34487b=document[_0xfef64b(0x24e)]('address-reference')['value'];deliveryInfo['address']&&(deliveryInfo[_0xfef64b(0x21c)][_0xfef64b(0x235)]=_0x434ae1,deliveryInfo['address'][_0xfef64b(0x244)]=_0x34487b);const _0x30e518=document[_0xfef64b(0x1a5)](_0xfef64b(0x19a));_0x30e518&&(_0x30e518['disabled']=!canProceedToCustomer());}function handleTableInput(_0x307e3d){const _0x621d9f=_0x9b6286;deliveryInfo[_0x621d9f(0x1c6)]=_0x307e3d['value'];const _0x12d361=document[_0x621d9f(0x1a5)](_0x621d9f(0x19a));_0x12d361&&(_0x12d361['disabled']=!canProceedToCustomer());}async function searchCep(){const _0x237d0d=_0x9b6286,_0x4a513a=document[_0x237d0d(0x24e)](_0x237d0d(0x226)),_0x1073c7=document['getElementById'](_0x237d0d(0x18b)),_0x474de8=_0x4a513a['value']['replace'](/\D/g,'');if(_0x474de8[_0x237d0d(0x254)]!==0x8){alert(_0x237d0d(0x264));return;}_0x1073c7['textContent']='...',_0x1073c7['disabled']=!![];try{const _0x29137a=await fetch('https://viacep.com.br/ws/'+_0x474de8+_0x237d0d(0x199)),_0xe56620=await _0x29137a[_0x237d0d(0x148)]();if(_0xe56620[_0x237d0d(0x193)]){alert(_0x237d0d(0x26b));return;}deliveryInfo['address']={'cep':_0xe56620[_0x237d0d(0x14e)],'street':_0xe56620[_0x237d0d(0x15a)],'neighborhood':_0xe56620[_0x237d0d(0x216)],'city':_0xe56620[_0x237d0d(0x1d1)],'state':_0xe56620['uf'],'number':'','reference':''},renderCheckoutModal();}catch(_0x1015df){alert(_0x237d0d(0x1bb));}finally{_0x1073c7[_0x237d0d(0x17e)]=_0x237d0d(0x1b2),_0x1073c7[_0x237d0d(0x1fe)]=![];}}function handleCustomerInput(){const _0x3fbea5=_0x9b6286;customerInfo['name']=document[_0x3fbea5(0x24e)](_0x3fbea5(0x1e1))[_0x3fbea5(0x250)];const _0x55c72c=document[_0x3fbea5(0x1a5)](_0x3fbea5(0x19a));_0x55c72c&&(_0x55c72c['disabled']=!canProceedToPayment());}function handlePhoneInput(_0x1198ef){const _0x3c0e60=_0x9b6286;let _0x4f74e2=_0x1198ef[_0x3c0e60(0x250)][_0x3c0e60(0x26f)](/\D/g,'');_0x4f74e2[_0x3c0e60(0x254)]<=0xa?_0x4f74e2=_0x4f74e2[_0x3c0e60(0x26f)](/(\d{2})(\d{4})(\d{4})/,_0x3c0e60(0x1a7)):_0x4f74e2=_0x4f74e2['replace'](/(\d{2})(\d{5})(\d{4})/,_0x3c0e60(0x1a7));_0x1198ef[_0x3c0e60(0x250)]=_0x4f74e2,customerInfo[_0x3c0e60(0x1ff)]=_0x4f74e2;const _0x396b7d=document[_0x3c0e60(0x1a5)]('.continue-btn');_0x396b7d&&(_0x396b7d[_0x3c0e60(0x1fe)]=!canProceedToPayment());}function setPaymentMethod(_0x542e0f){paymentMethod=_0x542e0f,renderCheckoutModal();}function _0x1708(_0x35a65c,_0x2ecffb){const _0x11eba5=_0x11eb();return _0x1708=function(_0x170823,_0x93bf8){_0x170823=_0x170823-0x142;let _0x14381a=_0x11eba5[_0x170823];return _0x14381a;},_0x1708(_0x35a65c,_0x2ecffb);}function canProceedToCustomer(){const _0x493b7e=_0x9b6286;if(deliveryInfo[_0x493b7e(0x1b1)]==='pickup')return!![];if(deliveryInfo[_0x493b7e(0x1b1)]===_0x493b7e(0x159))return deliveryInfo['address']&&deliveryInfo[_0x493b7e(0x21c)]['number']&&deliveryInfo[_0x493b7e(0x21c)][_0x493b7e(0x235)][_0x493b7e(0x1aa)]()!==''&&deliveryInfo[_0x493b7e(0x21c)][_0x493b7e(0x15e)]&&deliveryInfo[_0x493b7e(0x21c)][_0x493b7e(0x281)];if(deliveryInfo[_0x493b7e(0x1b1)]===_0x493b7e(0x280))return deliveryInfo[_0x493b7e(0x1c6)]&&deliveryInfo[_0x493b7e(0x1c6)][_0x493b7e(0x1aa)]()!=='';return![];}function canProceedToPayment(){const _0x15fd2c=_0x9b6286;return customerInfo[_0x15fd2c(0x1f7)]&&customerInfo[_0x15fd2c(0x1f7)][_0x15fd2c(0x1aa)]()[_0x15fd2c(0x254)]>=0x2&&customerInfo[_0x15fd2c(0x1ff)]&&customerInfo[_0x15fd2c(0x1ff)]['replace'](/\D/g,'')[_0x15fd2c(0x254)]>=0xa;}function proceedToCustomer(){const _0x523394=_0x9b6286;if(!canProceedToCustomer()){alert('Por\x20favor,\x20preencha\x20todas\x20as\x20informações\x20necessárias\x20para\x20continuar.');return;}checkoutStep=_0x523394(0x215),renderCheckoutModal();}function proceedToPayment(){if(!canProceedToPayment()){alert('Por\x20favor,\x20preencha\x20seu\x20nome\x20e\x20telefone\x20corretamente\x20para\x20continuar.');return;}checkoutStep='payment',renderCheckoutModal();}function proceedToSummary(){checkoutStep='summary',renderCheckoutModal();}function getDeliveryLabel(){const _0x322f2f=_0x9b6286;switch(deliveryInfo[_0x322f2f(0x1b1)]){case'delivery':return _0x322f2f(0x247);case'pickup':return _0x322f2f(0x257);case _0x322f2f(0x280):return _0x322f2f(0x23a);default:return _0x322f2f(0x1b8);}}function getPaymentLabel(){const _0x1b7a37=_0x9b6286;switch(paymentMethod){case _0x1b7a37(0x27a):return _0x1b7a37(0x219);case _0x1b7a37(0x24b):return _0x1b7a37(0x14b);case'credit':return'Cartão\x20de\x20Crédito';case'debit':return _0x1b7a37(0x22c);default:return _0x1b7a37(0x1b8);}}function sendWhatsAppOrder(){const _0x2c521f=_0x9b6286;if(cart[_0x2c521f(0x254)]===0x0){alert(_0x2c521f(0x187));return;}const _0xe96310=cart['reduce']((_0x55e6d5,_0x29eb41)=>_0x55e6d5+_0x29eb41['price']*_0x29eb41[_0x2c521f(0x147)],0x0),_0xe214b0=deliveryInfo[_0x2c521f(0x1b1)]===_0x2c521f(0x159)&&deliverySettings[_0x2c521f(0x258)]?deliverySettings[_0x2c521f(0x154)]:0x0,_0x4c54c8=_0xe96310+_0xe214b0;let _0x1b9a8a='*🥇\x20PEDIDO\x20MASTER\x20CHEF\x20GOIANO\x20🥇*\x0a\x0a';_0x1b9a8a+=_0x2c521f(0x251)+new Date()['toLocaleDateString'](_0x2c521f(0x1d9))+'\x0a',_0x1b9a8a+='*⏱\x20Hora:*\x20'+new Date()['toLocaleTimeString'](_0x2c521f(0x1d9),{'hour':'2-digit','minute':_0x2c521f(0x188)})+'\x0a\x0a',_0x1b9a8a+='*🙍‍♂️\x20CLIENTE*\x0a',_0x1b9a8a+=_0x2c521f(0x27e)+customerInfo[_0x2c521f(0x1f7)]+'\x0a',_0x1b9a8a+=_0x2c521f(0x260)+customerInfo[_0x2c521f(0x1ff)]+'\x0a\x0a',_0x1b9a8a+='*🚚\x20'+getDeliveryLabel()[_0x2c521f(0x14d)]()+'*\x0a';if(deliveryInfo['type']===_0x2c521f(0x159)&&deliveryInfo[_0x2c521f(0x21c)])_0x1b9a8a+='Endereço:\x20'+deliveryInfo['address'][_0x2c521f(0x15e)]+',\x20'+deliveryInfo[_0x2c521f(0x21c)][_0x2c521f(0x235)]+'\x0a',_0x1b9a8a+='Bairro:\x20'+deliveryInfo[_0x2c521f(0x21c)][_0x2c521f(0x281)]+'\x0a',_0x1b9a8a+=_0x2c521f(0x213)+deliveryInfo[_0x2c521f(0x21c)][_0x2c521f(0x1fc)]+_0x2c521f(0x23b)+deliveryInfo[_0x2c521f(0x21c)][_0x2c521f(0x26c)]+'\x0a',deliveryInfo['address'][_0x2c521f(0x244)]&&(_0x1b9a8a+=_0x2c521f(0x142)+deliveryInfo[_0x2c521f(0x21c)][_0x2c521f(0x244)]+'\x0a');else deliveryInfo[_0x2c521f(0x1b1)]===_0x2c521f(0x280)&&(_0x1b9a8a+='Mesa:\x20'+deliveryInfo[_0x2c521f(0x1c6)]+'\x0a');_0x1b9a8a+='\x0a',_0x1b9a8a+=_0x2c521f(0x17f),cart['forEach']((_0x7b0905,_0xf79282)=>{const _0x33dccc=_0x2c521f,_0x38ae7f=_0x7b0905[_0x33dccc(0x189)]!==_0x33dccc(0x1d8)?'\x20('+_0x7b0905[_0x33dccc(0x189)]+')':'';_0x1b9a8a+=_0xf79282+0x1+'.\x20'+_0x7b0905['product'][_0x33dccc(0x1f7)]+_0x38ae7f+'\x0a',_0x1b9a8a+=_0x33dccc(0x218)+_0x7b0905[_0x33dccc(0x147)]+'x\x0a',_0x1b9a8a+=_0x33dccc(0x1b7)+formatPrice(_0x7b0905[_0x33dccc(0x154)]*_0x7b0905[_0x33dccc(0x147)])+'\x0a\x0a';}),_0x1b9a8a+=_0x2c521f(0x1c1),_0x1b9a8a+=_0x2c521f(0x24a)+formatPrice(_0xe96310)+'\x0a';_0xe214b0>0x0&&(_0x1b9a8a+='Taxa\x20de\x20entrega:\x20'+formatPrice(_0xe214b0)+'\x0a');_0x1b9a8a+=_0x2c521f(0x191)+formatPrice(_0x4c54c8)+'*\x0a\x0a',_0x1b9a8a+=_0x2c521f(0x1a8),_0x1b9a8a+=getPaymentLabel()+'\x0a\x0a',_0x1b9a8a+=_0x2c521f(0x18d),_0x1b9a8a+=_0x2c521f(0x227),_0x1b9a8a+=_0x2c521f(0x232);const _0x133b43=_0x2c521f(0x1df),_0x2e1ff9=encodeURIComponent(_0x1b9a8a),_0x4e573b=_0x2c521f(0x22d)+_0x133b43+_0x2c521f(0x1fb)+_0x2e1ff9;window['open'](_0x4e573b,_0x2c521f(0x183)),cart=[],saveToStorage(_0x2c521f(0x20c),cart),customerInfo={'name':'','phone':''},deliveryInfo={'type':_0x2c521f(0x159)},paymentMethod=_0x2c521f(0x27a),checkoutStep=_0x2c521f(0x159),updateCartDisplay(),closeCheckout(),renderProducts(getCurrentCategory()),alert(_0x2c521f(0x255));}function openInstagram(){const _0x3b9da4=_0x9b6286;window[_0x3b9da4(0x18c)](_0x3b9da4(0x18e),'_blank');}function openWhatsAppSupport(){const _0x4b7d87=_0x9b6286,_0x165e95='5561992069975',_0x24ed08=_0x4b7d87(0x240),_0x5145a1=_0x4b7d87(0x22d)+_0x165e95+_0x4b7d87(0x1fb)+encodeURIComponent(_0x24ed08);window[_0x4b7d87(0x18c)](_0x5145a1,_0x4b7d87(0x183));}function shareRestaurant(){const _0x1329af=_0x9b6286,_0x588c45=_0x1329af(0x1bc)+window['location'][_0x1329af(0x1c5)]+'\x0a\x0aWhatsApp:\x20(61)\x2099206-9975',_0x4f4c5c=_0x1329af(0x1af)+encodeURIComponent(_0x588c45);window[_0x1329af(0x18c)](_0x4f4c5c,_0x1329af(0x183));}function openAdmin(){const _0x27f49a=_0x9b6286;renderAdminModal(),document[_0x27f49a(0x24e)]('admin-modal')['classList'][_0x27f49a(0x25f)]('active');}function closeAdmin(){const _0x1ca141=_0x9b6286;document['getElementById'](_0x1ca141(0x201))[_0x1ca141(0x1e0)][_0x1ca141(0x17a)]('active');}function renderAdminModal(){const _0x15f10d=_0x9b6286,_0x30b41c=document['getElementById'](_0x15f10d(0x23e));!currentUser?_0x30b41c[_0x15f10d(0x1e3)]=_0x15f10d(0x18f):_0x30b41c[_0x15f10d(0x1e3)]=_0x15f10d(0x204)+(deliverySettings[_0x15f10d(0x258)]?_0x15f10d(0x242):'')+_0x15f10d(0x24f)+deliverySettings[_0x15f10d(0x154)]['toFixed'](0x2)+_0x15f10d(0x17b)+(!deliverySettings[_0x15f10d(0x258)]?'disabled':'')+_0x15f10d(0x270)+products[_0x15f10d(0x195)](_0x338f49=>_0x15f10d(0x174)+_0x338f49['id']+'\x22\x20'+(_0x338f49['id']===dishOfTheDay?.['id']?_0x15f10d(0x162):'')+'>'+_0x338f49[_0x15f10d(0x1f7)]+'</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x15f10d(0x1ba)]('')+_0x15f10d(0x23f)+(productImages[dishOfTheDay?.['id']]||'')+_0x15f10d(0x217)+dishOfTheDay?.['id']+'\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22support-btn\x22\x20onclick=\x22openWhatsAppSupport()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fab\x20fa-whatsapp\x22></i>\x20Suporte\x20do\x20Sistema\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22admin-products\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+products['map'](_0x949cce=>_0x15f10d(0x248)+_0x949cce[_0x15f10d(0x20e)]+_0x15f10d(0x198)+_0x949cce[_0x15f10d(0x1f7)]+_0x15f10d(0x1d6)+_0x949cce[_0x15f10d(0x1b5)]+_0x15f10d(0x19c)+(_0x949cce[_0x15f10d(0x1b3)]?'available':'unavailable')+_0x15f10d(0x268)+_0x949cce['id']+'\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-toggle-'+(_0x949cce['available']?'on':'off')+_0x15f10d(0x1f6)+(_0x949cce[_0x15f10d(0x1b3)]?_0x15f10d(0x15b):'Indisponível')+_0x15f10d(0x186)+(_0x949cce['price']['P']?'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22price-control\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Marmitex\x20P</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20step=\x220.01\x22\x20min=\x220\x22\x20value=\x22'+_0x949cce[_0x15f10d(0x154)]['P']+_0x15f10d(0x259)+_0x949cce['id']+'\x27,\x20\x27P\x27,\x20this.value)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':'')+_0x15f10d(0x1a3)+(_0x949cce['price']['G']?_0x15f10d(0x25b)+_0x949cce[_0x15f10d(0x154)]['G']+_0x15f10d(0x259)+_0x949cce['id']+_0x15f10d(0x1cc):'')+_0x15f10d(0x1a3)+(_0x949cce[_0x15f10d(0x154)][_0x15f10d(0x1d8)]?_0x15f10d(0x1f1)+_0x949cce['price'][_0x15f10d(0x1d8)]+_0x15f10d(0x259)+_0x949cce['id']+'\x27,\x20\x27unique\x27,\x20this.value)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-image-preview\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22'+(productImages[_0x949cce['id']]||productImages['1'])+_0x15f10d(0x202)+_0x949cce[_0x15f10d(0x1f7)]+_0x15f10d(0x253)+(productImages[_0x949cce['id']]||'Padrão')+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x15f10d(0x1ba)]('')+_0x15f10d(0x206);}function handleLogin(_0xf29ea8){const _0x52b584=_0x9b6286;_0xf29ea8[_0x52b584(0x262)]();const _0x41ef3b=document[_0x52b584(0x24e)](_0x52b584(0x17c))[_0x52b584(0x250)],_0x282fc2=document[_0x52b584(0x24e)](_0x52b584(0x1e6))['value'],_0x5a0504=document['getElementById'](_0x52b584(0x266));_0x41ef3b===_0x52b584(0x145)&&_0x282fc2===_0x52b584(0x1ea)?(currentUser={'username':_0x41ef3b},saveToStorage('master_chef_user',currentUser),renderAdminModal()):(_0x5a0504[_0x52b584(0x17e)]=_0x52b584(0x14a),_0x5a0504[_0x52b584(0x1e4)][_0x52b584(0x267)]=_0x52b584(0x1b4));}function handleLogout(){const _0x2fc1ff=_0x9b6286;currentUser=null,saveToStorage(_0x2fc1ff(0x165),null),renderAdminModal();}function toggleDeliveryFee(){const _0x534f73=_0x9b6286;deliverySettings[_0x534f73(0x258)]=!deliverySettings['enabled'],saveToStorage(_0x534f73(0x21a),deliverySettings),updateDeliveryStatus(),renderAdminModal(),renderBanner();}function updateDeliveryPrice(_0x317591){const _0x4eb46d=_0x9b6286,_0xb943c5=parseFloat(_0x317591);!isNaN(_0xb943c5)&&_0xb943c5>=0x0&&(deliverySettings[_0x4eb46d(0x154)]=_0xb943c5,saveToStorage(_0x4eb46d(0x21a),deliverySettings),updateDeliveryStatus(),renderBanner());}function updateDishOfTheDay(_0xe7f02a){const _0x48540d=_0x9b6286,_0x2e3ab8=products[_0x48540d(0x149)](_0x4a4d1d=>_0x4a4d1d['id']===_0xe7f02a);_0x2e3ab8&&(dishOfTheDay=_0x2e3ab8,saveToStorage(_0x48540d(0x229),dishOfTheDay),renderBanner(),renderProducts(getCurrentCategory()));}function updateBannerImage(_0x492a27,_0x179d95){_0x492a27&&_0x179d95&&(productImages[_0x179d95]=_0x492a27,saveToStorage('master_chef_product_images',productImages),renderBanner(),renderProducts(getCurrentCategory()));}function toggleProductAvailability(_0x25de23){const _0x2d0ae4=_0x9b6286,_0x26ff61=products[_0x2d0ae4(0x149)](_0x2a0244=>_0x2a0244['id']===_0x25de23);_0x26ff61&&(_0x26ff61[_0x2d0ae4(0x1b3)]=!_0x26ff61[_0x2d0ae4(0x1b3)],saveToStorage(_0x2d0ae4(0x20b),products),renderAdminModal(),renderProducts(getCurrentCategory()));}function updateProductPrice(_0x5b591d,_0x2f1213,_0x4ad8d5){const _0x1f7020=_0x9b6286,_0x59ac67=parseFloat(_0x4ad8d5);if(isNaN(_0x59ac67)||_0x59ac67<0x0)return;const _0x3ddc90=products['find'](_0x4071bd=>_0x4071bd['id']===_0x5b591d);_0x3ddc90&&(_0x3ddc90[_0x1f7020(0x154)][_0x2f1213]=_0x59ac67,saveToStorage(_0x1f7020(0x20b),products),renderProducts(getCurrentCategory()));}document[_0x9b6286(0x16f)]('DOMContentLoaded',initApp);
+// Global State
+let products = [];
+let cart = [];
+let currentUser = null;
+let checkoutStep = 'delivery';
+let deliveryInfo = { type: 'delivery' };
+let customerInfo = { name: '', phone: '' };
+let paymentMethod = 'pix';
+let deliverySettings = { enabled: false, price: 5.00 };
+let dishOfTheDay = null;
+let currentSlide = 0;
+let bannerInterval = null;
+let tawkToLoaded = false;
+
+// Product Images
+const productImages = {
+    '1': 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '2': 'https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '3': 'https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '4': 'https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '5': 'https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '6': 'https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '7': 'https://conteudo.imguol.com.br/6a/2020/01/24/ovo-frito-1579891845647_v2_750x1000.jpg',
+    '8': 'https://www.correiobraziliense.com.br/cbradar/wp-content/uploads/2025/06/ovo-cozido_1749766714644.jpg',
+    '9': 'https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '10': 'https://thepetitpizzaria.com.br/parobe/wp-content/uploads/2021/06/Pet-2-Litros-Coca-Cola-PNG.png',
+    '11': 'https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '12': 'https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg?auto=compress&cs=tinysrgb&w=400',
+    '13': 'https://forbes.com.br/wp-content/uploads/2024/07/Life_A-picanha-e-um-tipo-de-corte-de-carne-bovis-criado-em-Sao-Paulo-e-considerada-a-melhor-comida-do-mundo.jpg',
+    '14': 'https://i.ibb.co/JjsV5h7k/Design-sem-nome.png'
+};
+
+// Banner Images
+const bannerImages = {
+    dishOfTheDay: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg',
+    deliveryInfo: 'https://images.pexels.com/photos/4393021/pexels-photo-4393021.jpeg'
+};
+
+// Initial Products Data
+const initialProducts = [
+    {
+        id: '1',
+        name: 'Sabor da Roça',
+        description: 'Moela ao molho com ervas finas acompanhada de arroz branco, feijão de caldo, macarrão e farofa Master',
+        category: 'grelhados',
+        price: { G: 17.99 },
+        available: true,
+        icon: '🐓',
+        special: true
+    },
+    {
+        id: '2',
+        name: 'Filé de Frango Grelhado',
+        description: 'Suculento filé de frango grelhado, servido com arroz branco, feijão de caldo, macarrão e farofa Master',
+        category: 'grelhados',
+        price: { P: 14.99, G: 17.99 },
+        available: true,
+        icon: '🍗'
+    },
+    {
+        id: '3',
+        name: 'Calabresa Acebolada',
+        description: 'Calabresa acebolada acompanhada de arroz branco, feijão de caldo, macarrão e farofa Master',
+        category: 'grelhados',
+        price: { P: 14.99, G: 17.99 },
+        available: true,
+        icon: '🥨'
+    },
+    {
+        id: '4',
+        name: 'Mista com 2 Opções de Carne',
+        description: 'Duas opções de carne à sua escolha com acompanhamentos tradicionais',
+        category: 'mistas',
+        price: { unique: 19.99 },
+        available: true,
+        icon: '🍖'
+    },
+    {
+        id: '5',
+        name: 'Mista com Bife',
+        description: 'Mista especial incluindo bife como uma das opções de carne',
+        category: 'mistas',
+        price: { unique: 24.99 },
+        available: true,
+        icon: '🍖'
+    },
+    {
+        id: '6',
+        name: 'Bife Acebolado',
+        description: 'Bife acebolado suculento, servido com arroz branco, feijão de caldo, macarrão e farofa Master',
+        category: 'bife',
+        price: { G: 19.99 },
+        available: true,
+        icon: '🥩'
+    },
+    {
+        id: '7',
+        name: 'Ovo Frito',
+        description: 'Ovo frito fresquinho',
+        category: 'adicionais',
+        price: { unique: 3.00 },
+        available: true,
+        icon: '🍳'
+    },
+    {
+        id: '8',
+        name: 'Ovo Cozido',
+        description: 'Ovo cozido perfeito',
+        category: 'adicionais',
+        price: { unique: 3.00 },
+        available: true,
+        icon: '🥚'
+    },
+    {
+        id: '9',
+        name: 'Coca-Cola 310ml',
+        description: 'Refrigerante Coca-Cola 310ml gelado',
+        category: 'bebidas',
+        price: { unique: 6.00 },
+        available: true,
+        icon: '🥤'
+    },
+    {
+        id: '10',
+        name: 'Coca-Cola 2L',
+        description: 'Refrigerante Coca-Cola 2L',
+        category: 'bebidas',
+        price: { unique: 15.00 },
+        available: true,
+        icon: '🥤'
+    },
+    {
+        id: '11',
+        name: 'Kuat 1.5L',
+        description: 'Refrigerante Kuat 1.5L',
+        category: 'bebidas',
+        price: { unique: 10.00 },
+        available: true,
+        icon: '🥤'
+    },
+    {
+        id: '12',
+        name: 'Guaraná Indaiá 250ml',
+        description: 'Refrigerante Guaraná Indaiá 250ml gelado',
+        category: 'bebidas',
+        price: { unique: 4.00 },
+        available: true,
+        icon: '🥤'
+    },
+    {
+        id: '13',
+        name: 'Picanha Premium',
+        description: 'Picanha suína selecionada com acompanhamentos',
+        category: 'grelhados',
+        price: { unique: 42.90 },
+        available: true,
+        icon: '🥩'
+    },
+    {
+        id: '14',
+        name: 'Feijoada',
+        description: 'Feijoada Goiana, com farofa especial',
+        category: 'mista',
+        price: { unique: 19.90 },
+        available: true,
+        icon: '🥩'
+    }
+];
+
+// Storage Functions
+function saveToStorage(key, data) {
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+    } catch (e) {
+        console.warn('Could not save to localStorage:', e);
+    }
+}
+
+function loadFromStorage(key, defaultValue = null) {
+    try {
+        const stored = localStorage.getItem(key);
+        return stored ? JSON.parse(stored) : defaultValue;
+    } catch (e) {
+        console.warn('Could not load from localStorage:', e);
+        return defaultValue;
+    }
+}
+
+// Função para verificar status do Tawk.to
+function checkTawkToStatus() {
+    const maxAttempts = 10;
+    let attempts = 0;
+    
+    const checkInterval = setInterval(() => {
+        attempts++;
+        
+        if (typeof Tawk_API !== 'undefined') {
+            tawkToLoaded = true;
+            console.log('✅ Tawk.to carregado com sucesso');
+            clearInterval(checkInterval);
+            
+            // Configurações iniciais do chat
+            if (typeof Tawk_API.onLoad === 'function') {
+                Tawk_API.onLoad = function() {
+                    Tawk_API.setAttributes({
+                        name: 'Visitante Master Chef Goiano',
+                        email: '',
+                        store: 'Master Chef Goiano'
+                    });
+                };
+            }
+        }
+        
+        if (attempts >= maxAttempts) {
+            console.warn('❌ Tawk.to não carregado após ' + maxAttempts + ' tentativas');
+            clearInterval(checkInterval);
+            // Adiciona classe de erro ao botão de chat
+            const chatBtn = document.querySelector('.chat-btn-float');
+            if (chatBtn) {
+                chatBtn.classList.add('error');
+            }
+        }
+    }, 1000);
+}
+
+// Função para recarregar o Tawk.to se necessário
+function reloadTawkToIfNeeded() {
+    if (typeof Tawk_API === 'undefined') {
+        console.log('Recarregando Tawk.to...');
+        
+        // Remove o script existente
+        const existingScript = document.querySelector('script[src*="tawk.to"]');
+        if (existingScript) {
+            existingScript.remove();
+        }
+        
+        // Recria o script
+        const s1 = document.createElement("script");
+        const s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/667f69c09d7f358570d38b4f/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+        
+        // Tenta novamente após 3 segundos
+        setTimeout(checkTawkToStatus, 3000);
+    }
+}
+
+// Initialize App
+function initApp() {
+    // Verificar se o Tawk.to carregou
+    checkTawkToStatus();
+    
+    products = loadFromStorage('master_chef_products', initialProducts);
+    deliverySettings = loadFromStorage('master_chef_delivery', { enabled: false, price: 5.00 });
+    dishOfTheDay = loadFromStorage('master_chef_dish_of_the_day', products.find(p => p.special) || products[0]);
+    
+    updateDeliveryStatus();
+    renderBanner();
+    renderProducts();
+    setupEventListeners();
+    startBannerRotation();
+    
+    updateCartDisplay();
+    
+    // Verifica novamente após 5 segundos se não carregou
+    setTimeout(function() {
+        if (!tawkToLoaded) {
+            reloadTawkToIfNeeded();
+        }
+    }, 5000);
+}
+
+// Banner Functions
+function renderBanner() {
+    const dishSlide = document.getElementById('dish-of-the-day');
+    const deliverySlide = document.getElementById('delivery-info');
+    
+    // Atualiza o prato do dia
+    if (dishOfTheDay) {
+        dishSlide.querySelector('img').src = productImages[dishOfTheDay.id] || bannerImages.dishOfTheDay;
+        dishSlide.querySelector('h3').textContent = dishOfTheDay.name;
+    }
+    
+    // Atualiza informações de entrega
+    const deliveryTypeEl = document.getElementById('delivery-type');
+    const workingHoursEl = document.getElementById('working-hours');
+    
+    if (deliverySettings.enabled) {
+        deliveryTypeEl.textContent = `Frete: ${formatPrice(deliverySettings.price)}`;
+    } else {
+        deliveryTypeEl.textContent = 'Frete Grátis';
+    }
+    
+    workingHoursEl.textContent = 'Seg a Dom: 09:00 às 16:00';
+}
+
+function startBannerRotation() {
+    clearInterval(bannerInterval);
+    bannerInterval = setInterval(nextSlide, 5000);
+}
+
+function nextSlide() {
+    const slides = document.querySelectorAll('.banner-slide');
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+    startBannerRotation();
+}
+
+function prevSlide() {
+    const slides = document.querySelectorAll('.banner-slide');
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    startBannerRotation();
+}
+
+function orderDishOfTheDay() {
+    if (!dishOfTheDay) {
+        console.error('Nenhum prato do dia definido');
+        return;
+    }
+    
+    // Verifica se o prato está disponível
+    if (!dishOfTheDay.available) {
+        alert('Este prato não está disponível no momento');
+        return;
+    }
+    
+    // Determina o tamanho padrão (G ou único)
+    let size = 'unique';
+    if (dishOfTheDay.price.G) {
+        size = 'G';
+    } else if (dishOfTheDay.price.P) {
+        size = 'P'; // Caso tenha tamanho P também
+    }
+    
+    // Adiciona ao carrinho
+    updateQuantity(dishOfTheDay.id, size, 1);
+    
+    // Abre o carrinho
+    openCart();
+    
+    // Feedback visual
+    const cartBtn = document.querySelector('.cart-btn-float');
+    cartBtn.classList.add('pulse');
+    setTimeout(() => {
+        cartBtn.classList.remove('pulse');
+    }, 1000);
+}
+
+// Update delivery status in header
+function updateDeliveryStatus() {
+    const deliveryStatusEl = document.getElementById('delivery-status');
+    if (deliverySettings.enabled) {
+        deliveryStatusEl.textContent = formatPrice(deliverySettings.price);
+    } else {
+        deliveryStatusEl.textContent = 'GRÁTIS';
+    }
+}
+
+// Função para abrir o chat Tawk.to
+function openChat() {
+    console.log('Abrindo chat...');
+    
+    if (typeof Tawk_API !== 'undefined') {
+        try {
+            // Remove classe de erro se existir
+            const chatBtn = document.querySelector('.chat-btn-float');
+            if (chatBtn) {
+                chatBtn.classList.remove('error');
+            }
+            
+            // Verifica se o chat está minimizado e maximiza
+            if (Tawk_API.isChatMinimized && Tawk_API.isChatMinimized()) {
+                Tawk_API.maximize();
+                console.log('Chat maximizado com sucesso');
+            } else if (Tawk_API.isChatHidden && Tawk_API.isChatHidden()) {
+                Tawk_API.toggle();
+                console.log('Chat mostrado com sucesso');
+            } else {
+                Tawk_API.maximize();
+                console.log('Chat aberto com sucesso');
+            }
+            
+            // Mensagem automática de boas-vindas após 2 segundos
+            setTimeout(() => {
+                if (typeof Tawk_API !== 'undefined' && Tawk_API.setAttributes) {
+                    Tawk_API.setAttributes({
+                        name: 'Cliente Master Chef Goiano',
+                        email: 'cliente@masterchefgoiano.com.br',
+                        store: 'Master Chef Goiano'
+                    }, function(error){
+                        if (!error) {
+                            console.log('Atributos do chat configurados');
+                        }
+                    });
+                }
+            }, 2000);
+            
+        } catch (error) {
+            console.error('Erro ao abrir chat Tawk.to:', error);
+            fallbackToWhatsApp();
+        }
+    } else {
+        console.warn('Tawk.to não disponível, usando fallback para WhatsApp');
+        fallbackToWhatsApp();
+    }
+}
+
+// Fallback para WhatsApp
+function fallbackToWhatsApp() {
+    const message = 'Olá! Gostaria de informações sobre os pratos do Master Chef Goiano';
+    const whatsappUrl = `https://wa.me/5561992069975?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Event Listeners
+function setupEventListeners() {
+    // Category filter
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            filterProducts(e.target.dataset.category);
+        });
+    });
+
+    // Modal close on backdrop click
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    });
+}
+
+// Product Functions
+function renderProducts(category = 'all') {
+    const container = document.getElementById('products-container');
+    const filteredProducts = category === 'all' 
+        ? products 
+        : products.filter(p => p.category === category);
+
+    if (filteredProducts.length === 0) {
+        container.innerHTML = `
+            <div class="empty-products">
+                <p>Nenhum produto encontrado nesta categoria</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = filteredProducts.map(product => `
+        <div class="product-card ${product.special ? 'special' : ''} ${!product.available ? 'unavailable' : ''}">
+            <div class="product-header">
+                <img src="${productImages[product.id] || productImages['1']}" 
+                     alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    ${product.id === dishOfTheDay?.id ? '<span class="special-badge">⭐ PRATO DO DIA</span>' : ''}
+                </div>
+            </div>
+            
+            <p class="product-description">${product.description}</p>
+            
+            ${product.available ? renderPriceOptions(product) : '<div class="unavailable-label">INDISPONÍVEL</div>'}
+        </div>
+    `).join('');
+}
+
+function renderPriceOptions(product) {
+    let html = '<div class="price-options">';
+    
+    if (product.price.P) {
+        html += `
+            <div class="price-option">
+                <div class="price-info">
+                    <span class="price-label">Marmitex P</span>
+                    <span class="price-value">${formatPrice(product.price.P)}</span>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus" onclick="updateQuantity('${product.id}', 'P', -1)" ${getQuantity(product.id, 'P') === 0 ? 'disabled' : ''}>
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-display">${getQuantity(product.id, 'P')}</span>
+                    <button class="quantity-btn plus" onclick="updateQuantity('${product.id}', 'P', 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    if (product.price.G) {
+        html += `
+            <div class="price-option">
+                <div class="price-info">
+                    <span class="price-label">Marmitex G</span>
+                    <span class="price-value">${formatPrice(product.price.G)}</span>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus" onclick="updateQuantity('${product.id}', 'G', -1)" ${getQuantity(product.id, 'G') === 0 ? 'disabled' : ''}>
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-display">${getQuantity(product.id, 'G')}</span>
+                    <button class="quantity-btn plus" onclick="updateQuantity('${product.id}', 'G', 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    if (product.price.unique) {
+        html += `
+            <div class="price-option">
+                <div class="price-info">
+                    <span class="price-value">${formatPrice(product.price.unique)}</span>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus" onclick="updateQuantity('${product.id}', 'unique', -1)" ${getQuantity(product.id, 'unique') === 0 ? 'disabled' : ''}>
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-display">${getQuantity(product.id, 'unique')}</span>
+                    <button class="quantity-btn plus" onclick="updateQuantity('${product.id}', 'unique', 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    html += '</div>';
+    return html;
+}
+
+function filterProducts(category) {
+    renderProducts(category);
+}
+
+// Cart Functions
+function getQuantity(productId, size) {
+    const item = cart.find(item => item.productId === productId && item.size === size);
+    return item ? item.quantity : 0;
+}
+
+function updateQuantity(productId, size, change) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const existingItemIndex = cart.findIndex(item => item.productId === productId && item.size === size);
+    const currentQuantity = existingItemIndex >= 0 ? cart[existingItemIndex].quantity : 0;
+    const newQuantity = Math.max(0, currentQuantity + change);
+
+    if (newQuantity === 0) {
+        if (existingItemIndex >= 0) {
+            cart.splice(existingItemIndex, 1);
+        }
+    } else {
+        const price = product.price[size];
+        if (existingItemIndex >= 0) {
+            cart[existingItemIndex].quantity = newQuantity;
+        } else {
+            cart.push({
+                productId,
+                product,
+                size,
+                quantity: newQuantity,
+                price
+            });
+        }
+    }
+
+    updateCartDisplay();
+    renderProducts(getCurrentCategory());
+}
+
+function getCurrentCategory() {
+    const activeBtn = document.querySelector('.category-btn.active');
+    return activeBtn ? activeBtn.dataset.category : 'all';
+}
+
+function updateCartDisplay() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCountEl = document.getElementById('cart-count');
+    cartCountEl.textContent = totalItems;
+    
+    if (totalItems === 0) {
+        cartCountEl.style.display = 'none';
+    } else {
+        cartCountEl.style.display = 'flex';
+    }
+}
+
+function calculateTotal() {
+    const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = deliveryInfo.type === 'delivery' && deliverySettings.enabled ? deliverySettings.price : 0;
+    return itemsTotal + deliveryFee;
+}
+
+function formatPrice(price) {
+    return price.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+
+// Modal Functions
+function openCart() {
+    renderCartModal();
+    document.getElementById('cart-modal').classList.add('active');
+}
+
+function closeCart() {
+    document.getElementById('cart-modal').classList.remove('active');
+}
+
+function renderCartModal() {
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartFooterEl = document.getElementById('cart-footer');
+
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Seu carrinho está vazio</p>
+                <p style="font-size: 0.875rem;">Adicione alguns itens deliciosos!</p>
+            </div>
+        `;
+        cartFooterEl.innerHTML = '';
+        return;
+    }
+
+    cartItemsEl.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+            <div class="cart-item-header">
+                <div class="cart-item-info">
+                    <img src="${productImages[item.product.id] || productImages['1']}" 
+                         alt="${item.product.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3>${item.product.name}</h3>
+                        <p class="cart-item-size">${item.size !== 'unique' ? `Marmitex ${item.size}` : ''}</p>
+                    </div>
+                </div>
+                <button class="remove-item-btn" onclick="removeCartItem(${index})">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-item-controls">
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus" onclick="updateCartItemQuantity(${index}, -1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-display">${item.quantity}</span>
+                    <button class="quantity-btn plus" onclick="updateCartItemQuantity(${index}, 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="cart-item-price">
+                    ${formatPrice(item.price * item.quantity)}
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    const total = calculateTotal();
+    const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = deliveryInfo.type === 'delivery' && deliverySettings.enabled ? deliverySettings.price : 0;
+
+    cartFooterEl.innerHTML = `
+        <div class="cart-total">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span>${formatPrice(itemsTotal)}</span>
+            </div>
+            ${deliveryFee > 0 ? `
+                <div class="cart-total-row">
+                    <span>Taxa de entrega:</span>
+                    <span>${formatPrice(deliveryFee)}</span>
+                </div>
+            ` : ''}
+            <div class="cart-total-final">
+                <span>Total:</span>
+                <span class="total-value">${formatPrice(total)}</span>
+            </div>
+        </div>
+        <button class="checkout-btn" onclick="openCheckout()">
+            <i class="fas fa-credit-card"></i>
+            Finalizar Pedido
+        </button>
+    `;
+}
+
+function removeCartItem(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+    renderCartModal();
+    renderProducts(getCurrentCategory());
+}
+
+function updateCartItemQuantity(index, change) {
+    const item = cart[index];
+    const newQuantity = Math.max(1, item.quantity + change);
+    item.quantity = newQuantity;
+    updateCartDisplay();
+    renderCartModal();
+    renderProducts(getCurrentCategory());
+}
+
+// Checkout Functions
+function openCheckout() {
+    if (cart.length === 0) {
+        alert('Seu carrinho está vazio. Adicione itens antes de finalizar o pedido.');
+        return;
+    }
+    
+    checkoutStep = 'delivery';
+    renderCheckoutModal();
+    document.getElementById('cart-modal').classList.remove('active');
+    document.getElementById('checkout-modal').classList.add('active');
+}
+
+function closeCheckout() {
+    document.getElementById('checkout-modal').classList.remove('active');
+}
+
+function backToCart() {
+    document.getElementById('checkout-modal').classList.remove('active');
+    document.getElementById('cart-modal').classList.add('active');
+}
+
+function renderCheckoutModal() {
+    const titleEl = document.getElementById('checkout-title');
+    const contentEl = document.getElementById('checkout-content');
+
+    switch (checkoutStep) {
+        case 'delivery':
+            titleEl.textContent = 'Forma de Recebimento';
+            contentEl.innerHTML = renderDeliveryStep();
+            break;
+        case 'customer':
+            titleEl.textContent = 'Dados do Cliente';
+            contentEl.innerHTML = renderCustomerStep();
+            break;
+        case 'payment':
+            titleEl.textContent = 'Forma de Pagamento';
+            contentEl.innerHTML = renderPaymentStep();
+            break;
+        case 'summary':
+            titleEl.textContent = 'Confirmação do Pedido';
+            contentEl.innerHTML = renderSummaryStep();
+            break;
+    }
+}
+
+function renderDeliveryStep() {
+    return `
+        <div class="checkout-step">
+            <h3 style="margin-bottom: 1rem; text-align: center;">Como você deseja receber seu pedido?</h3>
+            
+            <div class="delivery-options">
+                <div class="delivery-option ${deliveryInfo.type === 'delivery' ? 'active' : ''}" onclick="setDeliveryType('delivery')">
+                    <div class="delivery-option-icon ${deliveryInfo.type === 'delivery' ? 'active' : ''}">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Entrega</h3>
+                    <p>${deliverySettings.enabled ? formatPrice(deliverySettings.price) : 'GRÁTIS'}</p>
+                </div>
+                
+                <div class="delivery-option ${deliveryInfo.type === 'pickup' ? 'active' : ''}" onclick="setDeliveryType('pickup')">
+                    <div class="delivery-option-icon ${deliveryInfo.type === 'pickup' ? 'active' : ''}">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Retirar</h3>
+                    <p>Na loja</p>
+                </div>
+                
+                <div class="delivery-option ${deliveryInfo.type === 'table' ? 'active' : ''}" onclick="setDeliveryType('table')">
+                    <div class="delivery-option-icon ${deliveryInfo.type === 'table' ? 'active' : ''}">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Mesa</h3>
+                    <p>Pedido na mesa</p>
+                </div>
+            </div>
+            
+            ${deliveryInfo.type === 'delivery' ? `
+                <div class="address-form">
+                    <h4><i class="fas fa-map-marker-alt" style="color: #dc2626;"></i> Endereço de Entrega</h4>
+                    
+                    <div class="form-group">
+                        <label>CEP para Entrega *</label>
+                        <div class="cep-input-group">
+                            <input type="text" id="cep-input" placeholder="00000-000" maxlength="9" value="${deliveryInfo.cep || ''}" oninput="handleCepInput(this)">
+                            <button class="cep-btn" onclick="searchCep()" id="cep-btn">Buscar</button>
+                        </div>
+                    </div>
+                    
+                    ${deliveryInfo.address ? `
+                        <div class="form-group">
+                            <label>Endereço encontrado:</label>
+                            <div class="address-found">
+                                <p>${deliveryInfo.address.street}, ${deliveryInfo.address.neighborhood}</p>
+                                <p>${deliveryInfo.address.city} - ${deliveryInfo.address.state}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Número *</label>
+                            <input type="text" id="address-number" placeholder="Ex: 123, Apto 45" value="${deliveryInfo.address.number || ''}" oninput="handleAddressInput()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ponto de Referência (opcional)</label>
+                            <input type="text" id="address-reference" placeholder="Ex: Próximo ao mercado" value="${deliveryInfo.address.reference || ''}" oninput="handleAddressInput()">
+                        </div>
+                    ` : ''}
+                </div>
+            ` : ''}
+            
+            ${deliveryInfo.type === 'table' ? `
+                <div class="address-form">
+                    <h4><i class="fas fa-utensils" style="color: #dc2626;"></i> Informe o número da mesa</h4>
+                    
+                    <div class="form-group">
+                        <label>Número da Mesa *</label>
+                        <input type="text" id="table-number" placeholder="Ex: 12" value="${deliveryInfo.tableNumber || ''}" oninput="handleTableInput(this)">
+                    </div>
+                </div>
+            ` : ''}
+            
+            <button class="continue-btn" onclick="proceedToCustomer()" ${!canProceedToCustomer() ? 'disabled' : ''}>
+                Continuar para Dados do Cliente
+            </button>
+        </div>
+    `;
+}
+
+function renderCustomerStep() {
+    return `
+        <div class="checkout-step">
+            <h3>Quase lá! Precisamos dos seus dados</h3>
+            <p>Para finalizar o pedido e manter contato</p>
+            
+            <div class="form-group">
+                <label>Nome Completo *</label>
+                <input type="text" id="customer-name" placeholder="Digite seu nome completo" value="${customerInfo.name}" oninput="handleCustomerInput()">
+            </div>
+            
+            <div class="form-group">
+                <label>Telefone/WhatsApp *</label>
+                <input type="tel" id="customer-phone" placeholder="(00) 00000-0000" maxlength="15" value="${customerInfo.phone}" oninput="handlePhoneInput(this)">
+                <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem;">Será usado para confirmar o pedido</p>
+            </div>
+            
+            <button class="continue-btn" onclick="proceedToPayment()" ${!canProceedToPayment() ? 'disabled' : ''}>
+                Continuar para Pagamento
+            </button>
+        </div>
+    `;
+}
+
+function renderPaymentStep() {
+    return `
+        <div class="checkout-step">
+            <div class="payment-note">
+                💰 Lembre-se: O pagamento será presencialmente no ato da entrega!
+            </div>
+            
+            <div class="payment-options">
+                <div class="payment-option pix ${paymentMethod === 'pix' ? 'active' : ''}" onclick="setPaymentMethod('pix')">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>PIX</h3>
+                    <p>Instantâneo e seguro</p>
+                </div>
+                <div class="payment-option cash ${paymentMethod === 'cash' ? 'active' : ''}" onclick="setPaymentMethod('cash')">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Dinheiro</h3>
+                    <p>Na entrega</p>
+                </div>
+                <div class="payment-option credit ${paymentMethod === 'credit' ? 'active' : ''}" onclick="setPaymentMethod('credit')">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Cartão Crédito</h3>
+                    <p>Débito ou crédito</p>
+                </div>
+                <div class="payment-option debit ${paymentMethod === 'debit' ? 'active' : ''}" onclick="setPaymentMethod('debit')">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Cartão Débito</h3>
+                    <p>Cartão na entrega</p>
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="proceedToSummary()">
+                Revisar Pedido
+            </button>
+        </div>
+    `;
+}
+
+function renderSummaryStep() {
+    const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = deliveryInfo.type === 'delivery' && deliverySettings.enabled ? deliverySettings.price : 0;
+    const total = itemsTotal + deliveryFee;
+
+    return `
+        <div class="checkout-step">
+            <!-- Customer Info -->
+            <div class="customer-info summary-section">
+                <h3><i class="fas fa-user"></i> Dados do Cliente</h3>
+                <p><strong>Nome:</strong> ${customerInfo.name}</p>
+                <p><strong>Telefone:</strong> ${customerInfo.phone}</p>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary summary-section">
+                <h3><i class="fas fa-shopping-bag"></i> Resumo do Pedido</h3>
+                ${cart.map(item => `
+                    <div class="summary-item">
+                        <div class="summary-item-info">
+                            <h4>${item.product.name}</h4>
+                            <p class="summary-item-details">
+                                ${item.size !== 'unique' ? `Marmitex ${item.size}` : ''} - Qtd: ${item.quantity}
+                            </p>
+                        </div>
+                        <div class="summary-price">${formatPrice(item.price * item.quantity)}</div>
+                    </div>
+                `).join('')}
+                
+                <div class="summary-totals">
+                    <div class="summary-total-row">
+                        <span>Subtotal</span>
+                        <span>${formatPrice(itemsTotal)}</span>
+                    </div>
+                    ${deliveryFee > 0 ? `
+                        <div class="summary-total-row">
+                            <span>Taxa de entrega</span>
+                            <span>${formatPrice(deliveryFee)}</span>
+                        </div>
+                    ` : ''}
+                    <div class="summary-total-final">
+                        <span>Total</span>
+                        <span class="total-value">${formatPrice(total)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Info -->
+            <div class="delivery-summary summary-section">
+                <h3><i class="fas fa-${deliveryInfo.type === 'delivery' ? 'map-marker-alt' : deliveryInfo.type === 'table' ? 'users' : 'store'}"></i> ${getDeliveryLabel()}</h3>
+                ${deliveryInfo.type === 'delivery' && deliveryInfo.address ? `
+                    <div style="font-size: 0.875rem; color: #059669;">
+                        <p>${deliveryInfo.address.street}, ${deliveryInfo.address.number}</p>
+                        <p>${deliveryInfo.address.neighborhood}</p>
+                        <p>${deliveryInfo.address.city} - ${deliveryInfo.address.state}</p>
+                        ${deliveryInfo.address.reference ? `<p>Ref: ${deliveryInfo.address.reference}</p>` : ''}
+                    </div>
+                ` : deliveryInfo.type === 'table' ? `
+                    <p style="font-size: 0.875rem; color: #059669;">Mesa: ${deliveryInfo.tableNumber}</p>
+                ` : `
+                    <p style="font-size: 0.875rem; color: #059669;">Retirada na loja</p>
+                `}
+            </div>
+
+            <!-- Payment Info -->
+            <div class="payment-summary summary-section">
+                <h3><i class="fas fa-credit-card"></i> Pagamento</h3>
+                <p style="font-size: 0.875rem; color: #7c3aed;">${getPaymentLabel()}</p>
+                <p style="font-size: 0.75rem; color: #f59e0b; margin-top: 0.25rem;">Pagamento presencial no ato da entrega</p>
+            </div>
+
+            <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+                <i class="fab fa-whatsapp"></i>
+                Enviar Pedido via WhatsApp
+            </button>
+        </div>
+    `;
+}
+
+// Delivery Step Functions
+function setDeliveryType(type) {
+    deliveryInfo.type = type;
+    if (type !== 'delivery') {
+        deliveryInfo.address = null;
+        deliveryInfo.cep = null;
+    }
+    if (type !== 'table') {
+        deliveryInfo.tableNumber = null;
+    }
+    renderCheckoutModal();
+}
+
+function handleCepInput(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length > 5) {
+        value = value.replace(/(\d{5})(\d{1,3})/, '$1-$2');
+    }
+    input.value = value;
+    deliveryInfo.cep = value;
+}
+
+function handleAddressInput() {
+    const number = document.getElementById('address-number').value;
+    const reference = document.getElementById('address-reference').value;
+    
+    if (deliveryInfo.address) {
+        deliveryInfo.address.number = number;
+        deliveryInfo.address.reference = reference;
+    }
+    
+    // Atualiza o botão de continuar
+    const continueBtn = document.querySelector('.continue-btn');
+    if (continueBtn) {
+        continueBtn.disabled = !canProceedToCustomer();
+    }
+}
+
+function handleTableInput(input) {
+    deliveryInfo.tableNumber = input.value;
+    
+    // Atualiza o botão de continuar
+    const continueBtn = document.querySelector('.continue-btn');
+    if (continueBtn) {
+        continueBtn.disabled = !canProceedToCustomer();
+    }
+}
+
+async function searchCep() {
+    const cepInput = document.getElementById('cep-input');
+    const cepBtn = document.getElementById('cep-btn');
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length !== 8) {
+        alert('CEP deve ter 8 dígitos');
+        return;
+    }
+    
+    cepBtn.textContent = '...';
+    cepBtn.disabled = true;
+    
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+        
+        if (data.erro) {
+            alert('CEP não encontrado');
+            return;
+        }
+        
+        deliveryInfo.address = {
+            cep: data.cep,
+            street: data.logradouro,
+            neighborhood: data.bairro,
+            city: data.localidade,
+            state: data.uf,
+            number: '',
+            reference: ''
+        };
+        
+        renderCheckoutModal();
+        
+    } catch (error) {
+        alert('Erro ao buscar CEP. Tente novamente.');
+    } finally {
+        cepBtn.textContent = 'Buscar';
+        cepBtn.disabled = false;
+    }
+}
+
+// Customer Step Functions
+function handleCustomerInput() {
+    customerInfo.name = document.getElementById('customer-name').value;
+    
+    // Atualiza o botão de continuar
+    const continueBtn = document.querySelector('.continue-btn');
+    if (continueBtn) {
+        continueBtn.disabled = !canProceedToPayment();
+    }
+}
+
+function handlePhoneInput(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+        value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    } else {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+    input.value = value;
+    customerInfo.phone = value;
+    
+    // Atualiza o botão de continuar
+    const continueBtn = document.querySelector('.continue-btn');
+    if (continueBtn) {
+        continueBtn.disabled = !canProceedToPayment();
+    }
+}
+
+// Payment Step Functions
+function setPaymentMethod(method) {
+    paymentMethod = method;
+    renderCheckoutModal();
+}
+
+// Navigation Functions
+function canProceedToCustomer() {
+    if (deliveryInfo.type === 'pickup') return true;
+    if (deliveryInfo.type === 'delivery') {
+        return deliveryInfo.address && 
+               deliveryInfo.address.number && 
+               deliveryInfo.address.number.trim() !== '' &&
+               deliveryInfo.address.street &&
+               deliveryInfo.address.neighborhood;
+    }
+    if (deliveryInfo.type === 'table') {
+        return deliveryInfo.tableNumber && 
+               deliveryInfo.tableNumber.trim() !== '';
+    }
+    return false;
+}
+
+function canProceedToPayment() {
+    return customerInfo.name && 
+           customerInfo.name.trim().length >= 2 && 
+           customerInfo.phone && 
+           customerInfo.phone.replace(/\D/g, '').length >= 10;
+}
+
+function proceedToCustomer() {
+    if (!canProceedToCustomer()) {
+        alert('Por favor, preencha todas as informações necessárias para continuar.');
+        return;
+    }
+    checkoutStep = 'customer';
+    renderCheckoutModal();
+}
+
+function proceedToPayment() {
+    if (!canProceedToPayment()) {
+        alert('Por favor, preencha seu nome e telefone corretamente para continuar.');
+        return;
+    }
+    checkoutStep = 'payment';
+    renderCheckoutModal();
+}
+
+function proceedToSummary() {
+    checkoutStep = 'summary';
+    renderCheckoutModal();
+}
+
+// Helper Functions
+function getDeliveryLabel() {
+    switch (deliveryInfo.type) {
+        case 'delivery': return 'Entrega';
+        case 'pickup': return 'Retirada na loja';
+        case 'table': return 'Mesa';
+        default: return 'Não informado';
+    }
+}
+
+function getPaymentLabel() {
+    switch (paymentMethod) {
+        case 'pix': return 'PIX';
+        case 'cash': return 'Dinheiro';
+        case 'credit': return 'Cartão de Crédito';
+        case 'debit': return 'Cartão de Débito';
+        default: return 'Não informado';
+    }
+}
+
+function sendWhatsAppOrder() {
+    if (cart.length === 0) {
+        alert('Seu carrinho está vazio. Adicione itens antes de enviar o pedido.');
+        return;
+    }
+
+    const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = deliveryInfo.type === 'delivery' && deliverySettings.enabled ? deliverySettings.price : 0;
+    const total = itemsTotal + deliveryFee;
+    
+    let message = `*🏆 PEDIDO MASTER CHEF GOIANO🏆* \n\n`;
+    message += ` *📅Data:* ${new Date().toLocaleDateString('pt-BR')}\n`;
+    message += ` *⏰Hora:* ${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}\n\n`;
+    
+    // Customer info
+    message += `👤* CLIENTE*\n`;
+    message += `Nome: ${customerInfo.name}\n`;
+    message += `Telefone: ${customerInfo.phone}\n\n`;
+    
+    // Delivery info
+    message += `*🚚 ${getDeliveryLabel().toUpperCase()}*\n`;
+    if (deliveryInfo.type === 'delivery' && deliveryInfo.address) {
+        message += `Endereço: ${deliveryInfo.address.street}, ${deliveryInfo.address.number}\n`;
+        message += `Bairro: ${deliveryInfo.address.neighborhood}\n`;
+        message += `Cidade: ${deliveryInfo.address.city} - ${deliveryInfo.address.state}\n`;
+        if (deliveryInfo.address.reference) {
+            message += `Referência: ${deliveryInfo.address.reference}\n`;
+        }
+    } else if (deliveryInfo.type === 'table') {
+        message += `Mesa: ${deliveryInfo.tableNumber}\n`;
+    }
+    message += `\n`;
+    
+    // Items
+    message += `*🍽️ITENS DO PEDIDO*\n`;
+    cart.forEach((item, index) => {
+        const sizeText = item.size !== 'unique' ? ` (${item.size})` : '';
+        message += `${index + 1}. ${item.product.name}${sizeText}\n`;
+        message += `   Quantidade: ${item.quantity}x\n`;
+        message += `   Valor: ${formatPrice(item.price * item.quantity)}\n\n`;
+    });
+    
+    // Totals
+    message += `*💰 RESUMO DO VALOR*\n`;
+    message += `Subtotal: ${formatPrice(itemsTotal)}\n`;
+    if (deliveryFee > 0) {
+        message += `Taxa de entrega: ${formatPrice(deliveryFee)}\n`;
+    }
+    message += `*TOTAL: ${formatPrice(total)}*\n\n`;
+    
+    // Payment
+    message += `*💳 FORMA DE PAGAMENTO*\n`;
+    message += `${getPaymentLabel()}\n\n`;
+    message += `_O pagamento será realizado no ato da entrega/retirada._\n\n`;
+    message += ` *🔔Obrigado pelo seu pedido!🔔* \n`;
+    message += `Entraremos em contato para confirmar.`;
+    
+    const phoneNumber = '5561992069975'; // Número do restaurante
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    // Abre o WhatsApp em uma nova aba
+    window.open(whatsappUrl, '_blank');
+    
+    // Limpa o carrinho e reseta o estado
+    cart = [];
+    saveToStorage('master_chef_cart', cart);
+    
+    // Reseta as informações do cliente e entrega
+    customerInfo = { name: '', phone: '' };
+    deliveryInfo = { type: 'delivery' };
+    paymentMethod = 'pix';
+    checkoutStep = 'delivery';
+    
+    // Atualiza a UI
+    updateCartDisplay();
+    closeCheckout();
+    renderProducts(getCurrentCategory());
+    
+    // Mostra mensagem de sucesso
+    alert('Pedido enviado com sucesso! Você será redirecionado para o WhatsApp.');
+}
+
+// Botão Instagram
+function openInstagram() {
+    window.open('https://instagram.com/personbrasil', '_blank');
+}
+
+// Botão WhatsApp Suporte
+function openWhatsAppSupport() {
+    const phoneNumber = '5561992069975';
+    const message = 'Olá, preciso de ajuda com meu pedido no Master Chef Goiano!';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Botão Compartilhar
+function shareRestaurant() {
+    const message = `🍽️ *Master Chef Goiano* 🍽️\n\nSabores autênticos da culinária goiana!\n\nPeça agora: ${window.location.href}\n\nWhatsApp: (61) 99206-9975`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Admin Functions
+function openAdmin() {
+    renderAdminModal();
+    document.getElementById('admin-modal').classList.add('active');
+}
+
+function closeAdmin() {
+    document.getElementById('admin-modal').classList.remove('active');
+}
+
+function renderAdminModal() {
+    const contentEl = document.getElementById('admin-content');
+    
+    if (!currentUser) {
+        contentEl.innerHTML = `
+            <div class="admin-login">
+                <div class="lock-icon">🔒</div>
+                <h3>Login Administrativo</h3>
+                <p>Faça login para gerenciar produtos e preços</p>
+                
+                <form class="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Usuário</label>
+                        <input type="text" id="admin-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="admin-password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Entrar</button>
+                    <div id="login-error" class="login-error"></div>
+                </form>
+                
+                <div class="test-credentials">
+                    <strong>Dados de teste:</strong><br>
+                    Usuário: admin<br>
+                    Senha: masterchef123
+                </div>
+            </div>
+        `;
+    } else {
+        contentEl.innerHTML = `
+            <div class="admin-header-controls">
+                <h3>Gerenciar Produtos</h3>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+            
+            <div class="delivery-settings">
+                <h4><i class="fas fa-truck"></i> Configurações de Entrega</h4>
+                <div class="delivery-controls">
+                    <div class="delivery-toggle">
+                        <label>Cobrar taxa de entrega</label>
+                        <div class="toggle-switch ${deliverySettings.enabled ? 'active' : ''}" onclick="toggleDeliveryFee()"></div>
+                    </div>
+                    <div class="delivery-price-input">
+                        <label>Valor:</label>
+                        <input type="number" step="0.01" min="0" value="${deliverySettings.price.toFixed(2)}" 
+                               onchange="updateDeliveryPrice(this.value)" ${!deliverySettings.enabled ? 'disabled' : ''}>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="banner-admin-controls">
+                <h4><i class="fas fa-image"></i> Configurações do Banner</h4>
+                <div class="form-group">
+                    <label>Prato do Dia</label>
+                    <select class="banner-product-select" onchange="updateDishOfTheDay(this.value)">
+                        ${products.map(p => `
+                            <option value="${p.id}" ${p.id === dishOfTheDay?.id ? 'selected' : ''}>${p.name}</option>
+                        `).join('')}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>URL da Imagem (opcional)</label>
+                    <input type="text" class="banner-image-url" placeholder="URL da imagem personalizada" 
+                           value="${productImages[dishOfTheDay?.id] || ''}" onchange="updateBannerImage(this.value, '${dishOfTheDay?.id}')">
+                </div>
+                <button class="support-btn" onclick="openWhatsAppSupport()">
+                    <i class="fab fa-whatsapp"></i> Suporte do Sistema
+                </button>
+            </div>
+            
+            <div class="admin-products">
+                ${products.map(product => `
+                    <div class="admin-product">
+                        <div class="admin-product-header">
+                            <div class="admin-product-info">
+                                <span class="admin-product-icon">${product.icon}</span>
+                                <div class="admin-product-details">
+                                    <h4>${product.name}</h4>
+                                    <p class="admin-product-category">${product.category}</p>
+                                </div>
+                            </div>
+                            <div class="availability-toggle ${product.available ? 'available' : 'unavailable'}" 
+                                 onclick="toggleProductAvailability('${product.id}')">
+                                <i class="fas fa-toggle-${product.available ? 'on' : 'off'}"></i>
+                                <span>${product.available ? 'Disponível' : 'Indisponível'}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="price-controls">
+                            ${product.price.P ? `
+                                <div class="price-control">
+                                    <label>Marmitex P</label>
+                                    <input type="number" step="0.01" min="0" value="${product.price.P}" 
+                                           onchange="updateProductPrice('${product.id}', 'P', this.value)">
+                                </div>
+                            ` : ''}
+                            ${product.price.G ? `
+                                <div class="price-control">
+                                    <label>Marmitex G</label>
+                                    <input type="number" step="0.01" min="0" value="${product.price.G}" 
+                                           onchange="updateProductPrice('${product.id}', 'G', this.value)">
+                                </div>
+                            ` : ''}
+                            ${product.price.unique ? `
+                                <div class="price-control">
+                                    <label>Preço Único</label>
+                                    <input type="number" step="0.01" min="0" value="${product.price.unique}" 
+                                           onchange="updateProductPrice('${product.id}', 'unique', this.value)">
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="product-image-preview">
+                            <img src="${productImages[product.id] || productImages['1']}" 
+                                 alt="${product.name}" class="admin-product-image">
+                            <p class="image-url">Imagem: ${productImages[product.id] || 'Padrão'}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('admin-username').value;
+    const password = document.getElementById('admin-password').value;
+    const errorEl = document.getElementById('login-error');
+    
+    if (username === 'admin' && password === 'masterchef123') {
+        currentUser = { username };
+        saveToStorage('master_chef_user', currentUser);
+        renderAdminModal();
+    } else {
+        errorEl.textContent = 'Usuário ou senha incorretos';
+        errorEl.style.display = 'block';
+    }
+}
+
+function handleLogout() {
+    currentUser = null;
+    saveToStorage('master_chef_user', null);
+    renderAdminModal();
+}
+
+function toggleDeliveryFee() {
+    deliverySettings.enabled = !deliverySettings.enabled;
+    saveToStorage('master_chef_delivery', deliverySettings);
+    updateDeliveryStatus();
+    renderAdminModal();
+    renderBanner();
+}
+
+function updateDeliveryPrice(value) {
+    const price = parseFloat(value);
+    if (!isNaN(price) && price >= 0) {
+        deliverySettings.price = price;
+        saveToStorage('master_chef_delivery', deliverySettings);
+        updateDeliveryStatus();
+        renderBanner();
+    }
+}
+
+function updateDishOfTheDay(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        dishOfTheDay = product;
+        saveToStorage('master_chef_dish_of_the_day', dishOfTheDay);
+        renderBanner();
+        renderProducts(getCurrentCategory());
+    }
+}
+
+function updateBannerImage(url, productId) {
+    if (url && productId) {
+        productImages[productId] = url;
+        saveToStorage('master_chef_product_images', productImages);
+        renderBanner();
+        renderProducts(getCurrentCategory());
+    }
+}
+
+function toggleProductAvailability(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        product.available = !product.available;
+        saveToStorage('master_chef_products', products);
+        renderAdminModal();
+        renderProducts(getCurrentCategory());
+    }
+}
+
+function updateProductPrice(productId, priceType, value) {
+    const price = parseFloat(value);
+    if (isNaN(price) || price < 0) return;
+    
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        product.price[priceType] = price;
+        saveToStorage('master_chef_products', products);
+        renderProducts(getCurrentCategory());
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Aguarda um pouco mais para garantir que tudo carregou
+    setTimeout(function() {
+        initApp();
+    }, 1000);
+});
